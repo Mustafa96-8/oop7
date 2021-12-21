@@ -35,7 +35,6 @@
             this.btnCreateGroup = new System.Windows.Forms.Button();
             this.listGroup = new System.Windows.Forms.ListBox();
             this.btnaplgroup = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,7 +156,6 @@
         private System.Windows.Forms.Button btnCreateGroup;
         private System.Windows.Forms.ListBox listGroup;
         private System.Windows.Forms.Button btnaplgroup;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

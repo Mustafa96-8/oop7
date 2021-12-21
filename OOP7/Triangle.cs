@@ -88,15 +88,20 @@ namespace OOP7
                 drawSelectedTriangle(gr);
             }
         }
+        public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
+        {
+            if ((points[0].X + x_ < width - 4) && (points[0].Y + y_ < height - 4) && (points[1].X + x_ > 4) && (points[2].Y + y_ > 4))
+            {
+                return true;
+            }
+            return false;
+        }
         public override void move(int x_, int y_, int width, int height, Mylist mylist)
         {
             initPoint();
-            if ((points[0].X+x_< width-4) && ( points[0].Y+y_< height-4) && (points[1].X+ x_ > 4) && (points[2].Y + y_ > 4))
-            {
-                x += x_;
-                y += y_;
-                initPoint();
-            }
+            x += x_;
+            y += y_;
+            initPoint();
         }
         public override void changesize(int size, int width, int height, Mylist mylist)
         {

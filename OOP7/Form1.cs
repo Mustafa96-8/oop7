@@ -189,16 +189,28 @@ namespace OOP7
                         if(lists.getSize()>0)lists.getObj(0).setSelect(true);
                         break;
                     case Keys.Left:
-                        lists.move(-value, 0,  pictureBox1.Width, pictureBox1.Height,lists);
+                        if(lists.canMove(-value, 0, pictureBox1.Width, pictureBox1.Height, lists))
+                        {
+                            lists.move(-value, 0, pictureBox1.Width, pictureBox1.Height, lists);
+                        }
                         break;
                     case Keys.Right:
-                        lists.move(+value, 0, pictureBox1.Width, pictureBox1.Height, lists);
+                        if (lists.canMove(+value, 0, pictureBox1.Width, pictureBox1.Height, lists))
+                        {
+                            lists.move(+value, 0, pictureBox1.Width, pictureBox1.Height, lists);
+                        }
                         break;
                     case Keys.Up:
-                        lists.move( 0, -value, pictureBox1.Width, pictureBox1.Height, lists);
+                        if (lists.canMove(0, -value, pictureBox1.Width, pictureBox1.Height, lists))
+                        { 
+                            lists.move(0, -value, pictureBox1.Width, pictureBox1.Height, lists); 
+                        }
                         break;
                     case Keys.Down:
-                        lists.move( 0,+value, pictureBox1.Width, pictureBox1.Height, lists);
+                        if (lists.canMove(0, +value, pictureBox1.Width, pictureBox1.Height, lists))
+                        {
+                            lists.move(0, +value, pictureBox1.Width, pictureBox1.Height, lists);
+                        }
                         break;
                     case Keys.OemMinus:
                         lists.changesize(-value, pictureBox1.Width, pictureBox1.Height, lists);

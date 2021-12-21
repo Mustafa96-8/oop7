@@ -70,13 +70,18 @@ namespace OOP7
             }
         }
 
+        public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
+        {
+            if ((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0))//Проверяем не выйдем ли мы за границу Бокса
+            {
+                return true;
+            }
+            return false;
+        }
         public override void move(int x_, int y_,int width, int height, Mylist mylist)//Передвижение объекта/ов
         {
-            if ((x + x_+R<width)&&(y+y_+R<height)&& (x + x_-R >0)&&(y + y_ - R >0))//Проверяем не выйдем ли мы за границу Бокса
-            {       
-                x += x_;
-                y += y_;    
-            }
+            x += x_;
+            y += y_;    
         }
 
         public override void changesize(int size, int width, int height, Mylist mylist)

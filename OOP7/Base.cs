@@ -103,6 +103,11 @@ namespace OOP7
         {
 
         }
+
+        public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
+        {
+            return false;
+        }
         public virtual void move(int x_, int y_,  int width, int height,Mylist mylist)
         {
         }

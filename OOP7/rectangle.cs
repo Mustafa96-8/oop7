@@ -71,14 +71,18 @@ namespace OOP7
                 drawSelectedRectangle(gr);
             }
         }
-
+        public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
+        {
+            if ((x + a / 2 + x_ + 4 < width) && (y + b / 2 + y_ + 4 < height) && (x - a / 2 + x_ > 4) && (y - b / 2 + y_ > 4))
+            {
+                return true;
+            }
+            return false;
+        }
         public override void move(int x_, int y_, int width, int height, Mylist mylist)
         {
-            if ((x + a / 2 + x_+4 < width) && (y + b / 2 + y_+4 < height) && (x - a / 2 + x_  > 4) && (y - b / 2 + y_  > 4))
-            {
-                x += x_;
-                y += y_;
-            }
+            x += x_;
+            y += y_;
         }
         public override void changesize(int size,  int width, int height, Mylist mylist)
         {

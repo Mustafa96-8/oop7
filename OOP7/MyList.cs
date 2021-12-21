@@ -272,6 +272,24 @@ namespace OOP7
             }
         }
 
+        public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
+        {
+            bool flag = true;
+            for (int i = 0; i < mylist.getSize(); i++)
+            {
+                if (mylist.getObj(i).getCode() == 'L')
+                {
+                    flag = ((Mylist)mylist.getObj(i)).canMove(x_, y_, width, height, (Mylist)mylist.getObj(i));
+                    if (flag == false) return false;
+                }
+                else if (mylist.getObj(i).getSelect())
+                {
+                    flag = mylist.getObj(i).canMove(x_, y_, width, height, mylist);
+                    if (flag == false) return false;
+                }
+            }
+            return flag;
+        }
         public override void move(int x_, int y_, int width, int height,Mylist mylist)
         {
             for (int i = 0; i < mylist.getSize(); i++)
