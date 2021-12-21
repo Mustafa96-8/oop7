@@ -213,10 +213,16 @@ namespace OOP7
                         }
                         break;
                     case Keys.OemMinus:
-                        lists.changesize(-value, pictureBox1.Width, pictureBox1.Height, lists);
+                        if (lists.canScaled(-value, pictureBox1.Width, pictureBox1.Height, lists))
+                        {
+                            lists.changesize(-value, pictureBox1.Width, pictureBox1.Height, lists);
+                        }
                         break;
                     case Keys.Oemplus:
-                        lists.changesize(+value, pictureBox1.Width, pictureBox1.Height, lists);
+                        if (lists.canScaled(+value, pictureBox1.Width, pictureBox1.Height, lists))
+                        {
+                            lists.changesize(+value, pictureBox1.Width, pictureBox1.Height, lists);
+                        }
                         break;
                     
                 }

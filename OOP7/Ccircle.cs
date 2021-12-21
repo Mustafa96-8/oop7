@@ -35,6 +35,7 @@ namespace OOP7
             initcomp();
             x = copy.x;
             y = copy.y;
+            R = copy.R;
             Selected = copy.Selected;
         }
         
@@ -72,24 +73,20 @@ namespace OOP7
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            if ((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0))//Проверяем не выйдем ли мы за границу Бокса
-            {
-                return true;
-            }
-            return false;
+            return ((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0));//Проверяем не выйдем ли мы за границу Бокса
         }
         public override void move(int x_, int y_,int width, int height, Mylist mylist)//Передвижение объекта/ов
         {
             x += x_;
             y += y_;    
         }
-
+        public override bool canScaled(int size, int width, int height, Mylist mylist)
+        {
+            return ((R + size > 5) && (x + R + size < width-5) && (y + size + R < height-5) && (x - size - R > 5) && (y - size - R > 5));
+        }
         public override void changesize(int size, int width, int height, Mylist mylist)
         {
-            if ((R+size>5)&&(x + R+size < width) && (y + size + R < height) && (x - size - R > 0) && (y -size - R > 0))
-            {
-                R += size;
-            } 
+            R += size;
         }
 
     }

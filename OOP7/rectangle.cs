@@ -73,24 +73,22 @@ namespace OOP7
         }
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            if ((x + a / 2 + x_ + 4 < width) && (y + b / 2 + y_ + 4 < height) && (x - a / 2 + x_ > 4) && (y - b / 2 + y_ > 4))
-            {
-                return true;
-            }
-            return false;
+            return ((x + a / 2 + x_  < width-5) && (y + b / 2 + y_  < height-5) && (x - a / 2 + x_ > 5) && (y - b / 2 + y_ > 5));
         }
         public override void move(int x_, int y_, int width, int height, Mylist mylist)
         {
             x += x_;
             y += y_;
         }
+        public override bool canScaled(int size, int width, int height, Mylist mylist)
+        {
+            return ((b + size * 2 > 5) && (x + a / 2 + (size * (a / b)) < width-5) 
+                && (y + b / 2 + size  < height-5) && (x - a / 2 - (size * (a / b)) > 5) && (y - b / 2 - size > 5));
+        }
         public override void changesize(int size,  int width, int height, Mylist mylist)
         {
-            if ((b+size*2>5)&&(x + a / 2 + (size*(a/b))+4 < width) && (y + b / 2 + size+4 < height) && (x - a/2 - (size * (a / b))-4 > 0) && (y - b/2 - size-4 > 0))
-            {
-                a += size *2* a/b;
-                b += size *2;
-            }
+            a += size *2* a/b;
+            b += size *2;
         }
     }
 }

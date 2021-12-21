@@ -111,6 +111,11 @@ namespace OOP7
         public virtual void move(int x_, int y_,  int width, int height,Mylist mylist)
         {
         }
+
+        public virtual bool canScaled(int size, int width, int height, Mylist mylist)
+        {
+            return false;
+        }
         public virtual void changesize(int size, int width, int height, Mylist mylist)
         {
         }
