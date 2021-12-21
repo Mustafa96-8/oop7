@@ -183,36 +183,28 @@ namespace OOP7
 
         public Mylist(Mylist list, int id)
         {
-            list = IsLastList(list);
-            for (int i = list.getSize() - 1; i >= 0; i--)
-            {
-                if (list.getObj(i).getSelect())
-                {
-                    Base b = list.getObjAndDelete(i);
-                    b.setmainpen("Yellow");
-                    add(b);
-                }
-            }
+            Mylist mylist;
+            mylist = IsLastList(list);
             this.id = id;
             initcomp();
-            list.add(this);
-
+            mylist.add(this);
             Mylist IsLastList(Mylist lists)
             {
-                int i;
-                for ( i = list.getSize() - 1; i >= 0; )
+                for (int i = lists.getSize()-1; i >=0;i--)
                 {   
-                    if (list.getSize() != 0)
+                    if (lists.getObj(i).getCode() == 'L' && ((Mylist)lists.getObj(i)).Selectonein)
                     {
-                    if (list.getObj(i).getCode() == 'L' && ((Mylist)list.getObj(i)).Selectonein)
-                    {
-                        list = (Mylist)list.getObj(i);
-                        i = list.getSize()-1;
+                        lists = IsLastList(((Mylist)lists.getObj(i)));
+                        return lists;
                     }
-                    else i--;
+                    else if (lists.getObj(i).getSelect())
+                    {
+                        Base b = lists.getObjAndDelete(i);
+                        b.setmainpen("Yellow");
+                        add(b);
                     }
                 }
-                return list;
+                return lists;
             }
         }
 
@@ -238,15 +230,10 @@ namespace OOP7
 
         public override void print(Graphics gr)
         {
-            if (Selected)
-            {
-                
-            }
             for (int i = 0; i < getSize(); i++)
             {
                 getObj(i).print(gr);
             }
-            
         }
 
         public override bool isClick(int x, int y, bool isCtrl, Mylist mylist)
@@ -266,15 +253,16 @@ namespace OOP7
 
         public override void refreshSelected(Mylist mylist)//ВСЁ ЗАНУЛЯЕМ
         {
-            for (int i = mylist.getSize() - 1; i >=0;i--)
+            for (int i = getSize() - 1; i >=0;i--)
             {   
-                if (mylist.getObj(i).getCode() == 'L') 
+                if (getObj(i).getCode() == 'L') 
                 {
-                    refreshSelected((Mylist)mylist.getObj(i));
+                    ((Mylist)getObj(i)).refreshSelected((Mylist)getObj(i));
+                    getObj(i).setSelect(false);
                 }
                 else
                 {
-                    mylist.getObj(i).setSelect(false);
+                    getObj(i).setSelect(false);
                 }
             }
         }
@@ -285,37 +273,44 @@ namespace OOP7
             {
                 if (mylist.getObj(i).getCode() == 'L')
                 {
-                    mylist.getObj(i).move(x_, y_, width, height, this);
+                    ((Mylist)mylist.getObj(i)).move(x_, y_, width, height, (Mylist)mylist.getObj(i));
                 }
                 else
                 if (mylist.getObj(i).getSelect())
                 {
-                    mylist.getObj(i).move(x_, y_, width, height,this);
+                    mylist.getObj(i).move(x_, y_, width, height, mylist);
                 }
             }
         }
 
-        public override void changesize(int size,  int width, int height,Mylist mylist)
+        public override void changesize(int size_,  int width, int height,Mylist mylist)
         {
             for (int i = 0; i < mylist.getSize(); i++)
             {
                 if (mylist.getObj(i).getCode() == 'L')
                 {
-                    mylist.getObj(i).changesize(size, width, height, this);
+                    ((Mylist)mylist.getObj(i)).changesize(size_, width, height, (Mylist)mylist.getObj(i));
                 }
                 else
                 if (mylist.getObj(i).getSelect())
                 {
-                    mylist.getObj(i).changesize(size, width, height, this);
+                    mylist.getObj(i).changesize(size_, width, height, mylist);
                 }
             }
         }
 
         public override void setBrush(string color)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < getSize(); i++)
             {
-                getObj(i).setBrush(color);
+                if (getObj(i).getCode() == 'L')
+                {
+                    ((Mylist)getObj(i)).setBrush(color);
+                }
+                else
+                {
+                    getObj(i).setBrush(color);
+                }
             }
         }
 
@@ -327,18 +322,18 @@ namespace OOP7
             }
         }
 
-
-        public override void toSelect(bool isCTRL, Mylist mylist)
+        public override void toSelect(bool isCTRL, Mylist mylist)//Надо выделить всё что под ним
         {
-            for (int i = mylist.getSize() - 1; i >= 0; i--)
+            for (int i = getSize() - 1; i >= 0; i--)
             {
-                if (mylist.getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L')
                 {
-                    toSelect(isCTRL,(Mylist)mylist.getObj(i));
+                    ((Mylist)getObj(i)).toSelect(true,(Mylist)getObj(i));
+                    getObj(i).setSelect(true);
                 }
                 else
                 {
-                    mylist.getObj(i).toSelect(isCTRL, mylist);
+                    getObj(i).setSelect(true);
                 }
             }
             

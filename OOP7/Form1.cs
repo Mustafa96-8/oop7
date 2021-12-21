@@ -160,6 +160,11 @@ namespace OOP7
             isCTRL = false;
             for (int i = 0; i < lists.getSize(); i++)
             {
+                if (lists.getObj(i).getCode() == 'L'&& lists.getObj(i).getSelect())
+                {
+                    ((Mylist)lists.getObj(i)).setBrush(listColor.SelectedItem.ToString());
+                }
+                else
                 if (lists.getObj(i).getSelect())
                 {
                     lists.getObj(i).setBrush(listColor.SelectedItem.ToString());
@@ -264,7 +269,14 @@ namespace OOP7
             }
                 if (listGroup.SelectedIndex > 0)
             {
-                
+                for (int i = 0; i < lists.getSize(); i++)
+                {
+                    if (lists.getObj(i).getCode() =='L'&& listGroup.SelectedIndex == ((Mylist)lists.getObj(i)).getId())
+                    {
+                        lists.getObj(i).toSelect(isCTRL,lists);
+                        break;
+                    }
+                }
             }
         }
     }
