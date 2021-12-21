@@ -219,6 +219,7 @@ namespace OOP7
             id = copy.id;
             initcomp();
         }
+
         public override void deleteSelected(Mylist list)
         {
             if (Selected)
@@ -294,8 +295,7 @@ namespace OOP7
                 {
                     ((Mylist)mylist.getObj(i)).changesize(size_, width, height, (Mylist)mylist.getObj(i));
                 }
-                else
-                if (mylist.getObj(i).getSelect())
+                else if (mylist.getObj(i).getSelect())
                 {
                     mylist.getObj(i).changesize(size_, width, height, mylist);
                 }
@@ -306,7 +306,7 @@ namespace OOP7
         {
             for (int i = 0; i < getSize(); i++)
             {
-                if (getObj(i).getCode() == 'L'&&getObj(i).getSelect())
+                if (getObj(i).getCode() == 'L')
                 {
                     ((Mylist)getObj(i)).setBrush(color);
                 }

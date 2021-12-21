@@ -96,7 +96,6 @@ namespace OOP7
                         break;
                 }
             }
-            isCTRL = false;
             if (!flag) {
                 switch (listBox1.SelectedItem.ToString())
                 {
@@ -119,7 +118,6 @@ namespace OOP7
             }
             else
             {
-                isCTRL = false;
                 PaintAll(); 
             }
             
@@ -157,7 +155,7 @@ namespace OOP7
 
         private void btnChangeColor(object sender, EventArgs e)
         {
-            isCTRL = false;
+
             lists.setBrush(listColor.SelectedItem.ToString());
             PaintAll();
         }
@@ -168,7 +166,6 @@ namespace OOP7
             if (e.Shift)
             {
                 value = 10;
-                isCTRL = false;
             }
             if (e.KeyCode ==Keys.ControlKey)
             {
@@ -212,7 +209,6 @@ namespace OOP7
                     
                 }
                 PaintAll();
-                isCTRL = false;
             }
             
         }
@@ -245,7 +241,7 @@ namespace OOP7
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
             createGroup();
-            isCTRL = false;
+
             PaintAll();
         }
 
@@ -261,6 +257,11 @@ namespace OOP7
             {
                 lists.toSelectInId(ID);
             }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!e.Control) isCTRL = false;
         }
     }
 }
