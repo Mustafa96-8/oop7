@@ -42,7 +42,7 @@ namespace OOP7
                 this.x = x;
                 this.y = y;
                 initPoint();
-                refreshSelected(mylist);
+                mylist.refreshSelected(mylist);
                 Selected = true;
                 mylist.add(this);
             }

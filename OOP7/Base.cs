@@ -130,7 +130,7 @@ namespace OOP7
         {
             if (!isCTRL)
             {
-                refreshSelected(mylist);
+                mylist.refreshSelected(mylist);
             }
             setSelect(true);
         }

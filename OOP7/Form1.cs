@@ -177,13 +177,17 @@ namespace OOP7
                 switch (e.KeyCode)
                 {
                     case Keys.Delete:
-                        for (int j = lists.getSize() - 1; j >= 0; j--)
+                        for (int i = lists.getSize() - 1; i >= 0; i--)
                         {
-                            char code = lists.getObj(j).getCode();
-                            lists.getObj(j).deleteSelected(lists);
-                            if (code == 'L')
+                            if (lists.getObj(i).getCode() == 'L')
                             {
+                                lists.getObj(i).deleteSelected(lists);
                                 refreshGroup();
+                                lists.refreshSelected(lists);
+                            }
+                            else
+                            {
+                                lists.getObj(i).deleteSelected(lists);
                             }
                         }
                         if(lists.getSize()>0)lists.getObj(0).setSelect(true);
@@ -235,15 +239,21 @@ namespace OOP7
             id = 0;
             listGroup.Items.Clear();
             listGroup.Items.Add("Nothing ");
-            for (int i = 0; i < lists.getSize(); i++)
+            refr(id, lists);
+            void refr(int id_,Mylist mylist)
             {
-                if (lists.getObj(i).getCode() == 'L')
+                for (int i = 0; i < mylist.getSize(); i++)
                 {
-                    id++;
-                    ((Mylist)lists.getObj(i)).setId(id);
-                    listGroup.Items.Add("group " + id.ToString());
+                    if (mylist.getObj(i).getCode() == 'L')
+                    {
+                        id_++;
+                        ((Mylist)mylist.getObj(i)).setId(id_);
+                        listGroup.Items.Add("group " + id_.ToString());
+                        refr(id_, ((Mylist)mylist.getObj(i)));
+                    }
                 }
             }
+            
         }
 
         private void listColor_SelectedIndexChanged(object sender, EventArgs e)

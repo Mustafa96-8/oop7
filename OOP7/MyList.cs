@@ -224,8 +224,22 @@ namespace OOP7
         {
             if (Selected)
             {
-                getOut(list);
+                for( int i = getSize() - 1; i >= 0; i--)
+                {
+                    list.add(getObjAndDelete(i));
+                }
                 list.deleteObj(this);
+                return;
+            }
+            else
+            {   
+                for(int i = getSize() - 1; i >= 0; i--)
+                {
+                    if (getObj(i).getCode() == 'L')
+                    {
+                        getObj(i).deleteSelected(this);
+                    } 
+                }
             }
         }
 
@@ -352,14 +366,6 @@ namespace OOP7
             }
         }
 
-        public void getOut(Mylist lists)
-        {
-            for (int i = size - 1; i >= 0; i--)
-            {
-                lists.add(getObjAndDelete(i));
-            }
-        }
-
         public override void toSelect(bool isCTRL, Mylist mylist)//Надо выделить всё что под ним
         {
             for (int i = getSize() - 1; i >= 0; i--)
@@ -384,7 +390,9 @@ namespace OOP7
                 { 
                     if (((Mylist)getObj(i)).getId() == ID_)
                     {
-                        ((Mylist)getObj(i)).toSelect(true, null);
+                        ((Mylist)getObj(i)).toSelect(true, this);
+                        ((Mylist)getObj(i)).Selected = true;
+                        return;
                     }
                     else
                     {
