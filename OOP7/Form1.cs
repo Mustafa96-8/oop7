@@ -158,18 +158,7 @@ namespace OOP7
         private void btnChangeColor(object sender, EventArgs e)
         {
             isCTRL = false;
-            for (int i = 0; i < lists.getSize(); i++)
-            {
-                if (lists.getObj(i).getCode() == 'L'&& lists.getObj(i).getSelect())
-                {
-                    ((Mylist)lists.getObj(i)).setBrush(listColor.SelectedItem.ToString());
-                }
-                else
-                if (lists.getObj(i).getSelect())
-                {
-                    lists.getObj(i).setBrush(listColor.SelectedItem.ToString());
-                }
-            }
+            lists.setBrush(listColor.SelectedItem.ToString());
             PaintAll();
         }
 
@@ -263,20 +252,14 @@ namespace OOP7
         private void listGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             lists.refreshSelected(lists);
-            if (listGroup.SelectedIndex == 0) 
+            int ID = listGroup.SelectedIndex;
+            if (ID == 0) 
             {
                 PaintAll();
             }
-                if (listGroup.SelectedIndex > 0)
+            else
             {
-                for (int i = 0; i < lists.getSize(); i++)
-                {
-                    if (lists.getObj(i).getCode() =='L'&& listGroup.SelectedIndex == ((Mylist)lists.getObj(i)).getId())
-                    {
-                        lists.getObj(i).toSelect(isCTRL,lists);
-                        break;
-                    }
-                }
+                lists.toSelectInId(ID);
             }
         }
     }

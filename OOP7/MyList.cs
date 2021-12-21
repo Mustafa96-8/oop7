@@ -151,8 +151,8 @@ namespace OOP7
             return tmp;
         }
 
-        //Реализация Визуальной херни
-        //всё что выше надеюсь не тронем
+        //Реализация Визуальной части----------------------------------------------------------------------------
+        //всё что выше надеюсь не тронем-------------------------------------------------------------------------
         private bool Selectonein;
         private int size;
         private int id;
@@ -243,7 +243,10 @@ namespace OOP7
             {
                 if (getObj(i).isClick(x, y, isCtrl, mylist))
                 {
-                    getObj(i).toSelect(isCtrl,this);
+                    if (getObj(i).getCode() != 'L')
+                    {
+                        getObj(i).toSelect(isCtrl, this);
+                    }
                     Selectonein = true;
                     flag = true;
                 }
@@ -259,6 +262,7 @@ namespace OOP7
                 {
                     ((Mylist)getObj(i)).refreshSelected((Mylist)getObj(i));
                     getObj(i).setSelect(false);
+                    ((Mylist)getObj(i)).Selectonein = false;
                 }
                 else
                 {
@@ -275,8 +279,7 @@ namespace OOP7
                 {
                     ((Mylist)mylist.getObj(i)).move(x_, y_, width, height, (Mylist)mylist.getObj(i));
                 }
-                else
-                if (mylist.getObj(i).getSelect())
+                else if (mylist.getObj(i).getSelect())
                 {
                     mylist.getObj(i).move(x_, y_, width, height, mylist);
                 }
@@ -303,11 +306,11 @@ namespace OOP7
         {
             for (int i = 0; i < getSize(); i++)
             {
-                if (getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L'&&getObj(i).getSelect())
                 {
                     ((Mylist)getObj(i)).setBrush(color);
                 }
-                else
+                else if(getObj(i).getSelect())
                 {
                     getObj(i).setBrush(color);
                 }
@@ -338,6 +341,22 @@ namespace OOP7
             }
             
         }
-
+        public void toSelectInId(int ID_)
+        {
+            for (int i = 0; i < getSize(); i++)
+            {
+                if (getObj(i).getCode() == 'L')
+                { 
+                    if (((Mylist)getObj(i)).getId() == ID_)
+                    {
+                        ((Mylist)getObj(i)).toSelect(true, null);
+                    }
+                    else
+                    {
+                        ((Mylist)getObj(i)).toSelectInId(ID_);
+                    }
+                }
+            }
+        }
     }
 }
