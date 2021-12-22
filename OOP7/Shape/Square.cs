@@ -18,7 +18,10 @@ namespace OOP7
             base.initcomp();
             a = 25;
         }
-
+        public Square()
+        {
+            initcomp();
+        }
         public Square(int x, int y, Mylist mylist, int width, int height)
         {
             initcomp();
@@ -86,8 +89,15 @@ namespace OOP7
         public override void save(string path)
         {
             StreamWriter writer = new StreamWriter(path, true);
-            writer.WriteLine("{0} {1} {2} {3}", getCode(), x, y, a);
+            writer.WriteLine("{0} {1} {2} {3} {4}", getCode(), x, y, color, a);
             writer.Close();
+        }
+        public override void load(string path, string[] tmp)
+        {
+            x = Int32.Parse(tmp[1]);
+            y = Int32.Parse(tmp[2]);
+            setBrush(tmp[3]);
+            a = Int32.Parse(tmp[4]);
         }
     }
 }

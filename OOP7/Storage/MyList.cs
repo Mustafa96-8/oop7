@@ -411,5 +411,28 @@ namespace OOP7
             }
             writer.Close();
         }
+        public override void load(string path, string[] arr)
+        {
+            id = Int32.Parse(arr[1]);
+            int size = Int32.Parse(arr[2]);
+            StreamReader streamReader  = new StreamReader(path);
+            string tmp = streamReader.ReadLine();
+            while (!(tmp.Split(' ')[0] == "L" && tmp.Split(' ')[1] == id.ToString()))
+            {
+                tmp = streamReader.ReadLine();
+            }
+            for (int i = 0; i < size; i++)
+            {
+                tmp = streamReader.ReadLine();
+                string[] tmparr = tmp.Split(' ');
+                Base tmpobj;
+                MyBaseFactory factory = new MyBaseFactory();
+                char code = tmparr[0].ToCharArray()[0];
+                tmpobj = factory.createBase(code);
+                tmpobj.load(path, tmparr);
+                add(tmpobj);
+            }
+            streamReader.Close();
+        }
     }
 }

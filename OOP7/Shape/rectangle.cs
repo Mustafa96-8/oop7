@@ -21,6 +21,10 @@ namespace OOP7
             b = 25;
         }
 
+        public Rectangle()
+        {
+            initcomp();
+        }
         public Rectangle(int x, int y, Mylist mylist, int width, int height)
         {
             
@@ -93,8 +97,16 @@ namespace OOP7
         public override void save(string path)
         {
             StreamWriter writer = new StreamWriter(path, true);
-            writer.WriteLine("{0} {1} {2} {3} {4}", getCode(), x, y, a, b);
+            writer.WriteLine("{0} {1} {2} {3} {4} {5}", getCode(), x, y, color, a, b);
             writer.Close();
+        }
+        public override void load(string path, string[] tmp)
+        {
+            x = Int32.Parse(tmp[1]);
+            y = Int32.Parse(tmp[2]);
+            setBrush(tmp[3]);
+            a = Int32.Parse(tmp[4]);
+            b = Int32.Parse(tmp[5]);
         }
     }
 }

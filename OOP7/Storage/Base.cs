@@ -12,6 +12,7 @@ namespace OOP7
         public int x, y;
         protected bool Selected = false;
         protected Brush br = Brushes.White;
+        protected string color = "White";
         public virtual void initcomp()
         {
             mainpen = new Pen(Color.Black);
@@ -25,42 +26,14 @@ namespace OOP7
             x = copy.x;
             y = copy.y;
             br = copy.br;
-            br = copy.br;
             Selected = copy.Selected;
+            color = copy.color;
         }
 
         public virtual void setmainpen(string pen)
         {
-            switch (pen)
-            {
-                case "Blue":
-                    mainpen = Pens.Blue;
-                    break;
-                case "Brown":
-                    mainpen = Pens.Brown;
-                    break;
-                case "Yellow":
-                    mainpen = Pens.Yellow;
-                    break;
-                case "Green":
-                    mainpen = Pens.Green;
-                    break;
-                case "Purple":
-                    mainpen = Pens.Purple;
-                    break;
-                case "Red":
-                    mainpen = Pens.Red;
-                    break;
-                case "White":
-                    mainpen = Pens.White;
-                    break;
-
-                default:
-                    break;
-            }
+            mainpen = new Pen(Color.FromName(pen));
         }
-
-        
 		public virtual char getCode()
         {
             return 'B';
@@ -71,33 +44,8 @@ namespace OOP7
         }
         public virtual void setBrush(string color)///Blue/Brown/Yellow/Green/Purple/Red/White
         {
-            switch (color)
-            {
-                case "Blue":
-                    br = Brushes.Blue;
-                    break;
-                case "Brown":
-                    br = Brushes.Brown;
-                    break;
-                case "Yellow":
-                    br = Brushes.Yellow;
-                    break;
-                case "Green":
-                    br = Brushes.Green;
-                    break;
-                case "Purple":
-                    br = Brushes.Purple;
-                    break;
-                case "Red":
-                    br = Brushes.Red;
-                    break;
-                case "White":
-                    br = Brushes.White;
-                    break;
-
-                default:
-                    break;
-            }
+            br = new SolidBrush(Color.FromName(color));
+            this.color = color;
         }
         public virtual void setSelect(bool value)
         {
@@ -150,7 +98,7 @@ namespace OOP7
         {
 
         }
-        public virtual void load(string path)
+        public virtual void load(string path, string[] tmp)
         {
 
         }
@@ -182,7 +130,32 @@ namespace OOP7
                     break;
 			}
 			return _base;
-		} 
-	}
+		}
+        public Base createBase(char code)
+        {
+            Base _base = null;
+            switch (code)
+            {
+                case 'C':
+                    _base = new Circle();
+                    break;
+                case 'R':
+                    _base = new Rectangle();
+                    break;
+                case 'S':
+                    _base = new Square();
+                    break;
+                case 'T':
+                    _base = new Triangle();
+                    break;
+                case 'L':
+                    _base = new Mylist();
+                    break;
+                default:
+                    break;
+            }
+            return _base;
+        }
+    }
 
 };

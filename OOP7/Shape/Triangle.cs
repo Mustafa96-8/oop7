@@ -35,6 +35,10 @@ namespace OOP7
             initPoint();
         }
 
+        public Triangle()
+        {
+            initcomp();
+        }
         public Triangle(int x, int y, Mylist mylist, int width, int height)
         {
             initcomp();
@@ -111,8 +115,16 @@ namespace OOP7
         public override void save(string path)
         {
             StreamWriter writer = new StreamWriter(path, true);
-            writer.WriteLine("{0} {1} {2} {3} {4}", getCode(), x, y, a, h);
+            writer.WriteLine("{0} {1} {2} {3} {4} {5}", getCode(), x, y, color, a, h);
             writer.Close();
+        }
+        public override void load(string path, string[] tmp)
+        {
+            x = Int32.Parse(tmp[1]);
+            y = Int32.Parse(tmp[2]);
+            setBrush(tmp[3]);
+            a = Int32.Parse(tmp[4]);
+            h = Int32.Parse(tmp[5]);
         }
     }
 }

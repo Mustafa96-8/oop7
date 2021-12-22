@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -16,11 +9,11 @@ namespace OOP7
         Mylist lists;
         PaintBox paintBox;
         bool isCTRL;
-        int id;
+        int id = 0;
+        string path = "savedata.txt";
         public Form1()
         {
             InitializeComponent();
-            id = 0;
             paintBox = new PaintBox(pictureBox1.Width, pictureBox1.Height);
             lists = new Mylist();
             isCTRL = false;
@@ -95,7 +88,7 @@ namespace OOP7
                 valuex = 10;
                 valuey = 10;
             }
-            if (e.KeyCode ==Keys.ControlKey)
+            if (e.KeyCode == Keys.ControlKey)
             {
                 isCTRL = true;
             }
@@ -207,12 +200,10 @@ namespace OOP7
                lists.toSelectInId(ID);
             }
             PaintAll();
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void save_button(object sender, EventArgs e)
         {
-            string path = "savedata.txt";
             FileInfo fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
                 fileInfo.Delete();
@@ -223,6 +214,32 @@ namespace OOP7
             for (int i = 0; i < lists.getSize(); i++)
             {
                 lists.getObj(i).save(path);
+            }
+        }
+
+        private void load_button(object sender, EventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+            if (fileInfo.Exists)
+            {
+                lists = new Mylist();
+                StreamReader streamReader = new StreamReader(path);
+                string tmp = streamReader.ReadLine();
+                int size = Int32.Parse(tmp);
+                for(int i = 0; i < size; i++)
+                {
+                    tmp = streamReader.ReadLine();
+                    string[] tmparr = tmp.Split(' ');
+                    Base tmpobj;
+                    MyBaseFactory factory = new MyBaseFactory();
+                    char code = tmparr[0].ToCharArray()[0];
+                    tmpobj = factory.createBase(code);
+                    tmpobj.load(path,tmparr);
+                    lists.add(tmpobj);
+                }
+                streamReader.Close();
+                PaintAll();
+                refreshGroup();
             }
         }
 
