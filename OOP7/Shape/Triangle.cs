@@ -51,11 +51,9 @@ namespace OOP7
         public Triangle(Triangle copy)
         {
             initcomp();
-            x = copy.x;
-            y = copy.y;
+            init(copy);
             a = copy.a;
             initPoint();
-            Selected = copy.Selected;
         }
 
         public override bool isClick(int x, int y, bool isCtrl, Mylist mylist)

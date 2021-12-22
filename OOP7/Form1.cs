@@ -86,10 +86,14 @@ namespace OOP7
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            int value = 1;
+            int valuex = 1;
+            int valuey = 1;
+            bool Ismove = false;
+            bool Isscale = false;
             if (e.Shift)
             {
-                value = 10;
+                valuex = 10;
+                valuey = 10;
             }
             if (e.KeyCode ==Keys.ControlKey)
             {
@@ -116,63 +120,62 @@ namespace OOP7
                         if(lists.getSize()>0)lists.getObj(0).setSelect(true);
                         break;
                     case Keys.Left:
-                        if(lists.canMove(-value, 0, pictureBox1.Width, pictureBox1.Height, lists))
-                        {
-                            lists.move(-value, 0, pictureBox1.Width, pictureBox1.Height, lists);
-                        }
+                        valuex *= -1;
+                        valuey = 0;
+                        Ismove = true;
                         break;
                     case Keys.Right:
-                        if (lists.canMove(+value, 0, pictureBox1.Width, pictureBox1.Height, lists))
-                        {
-                            lists.move(+value, 0, pictureBox1.Width, pictureBox1.Height, lists);
-                        }
+                        valuey = 0;
+                        Ismove = true;
                         break;
                     case Keys.Up:
-                        if (lists.canMove(0, -value, pictureBox1.Width, pictureBox1.Height, lists))
-                        { 
-                            lists.move(0, -value, pictureBox1.Width, pictureBox1.Height, lists); 
-                        }
+                        valuex = 0;
+                        valuey *= -1;
+                        Ismove = true;
                         break;
                     case Keys.Down:
-                        if (lists.canMove(0, +value, pictureBox1.Width, pictureBox1.Height, lists))
-                        {
-                            lists.move(0, +value, pictureBox1.Width, pictureBox1.Height, lists);
-                        }
+                        valuex = 0;
+                        Ismove = true;
                         break;
                     case Keys.OemMinus:
-                        if (lists.canScaled(-value, pictureBox1.Width, pictureBox1.Height, lists))
-                        {
-                            lists.changesize(-value, pictureBox1.Width, pictureBox1.Height, lists);
-                        }
+                        valuex *= -1;
+                        Isscale = true;
                         break;
                     case Keys.Oemplus:
-                        if (lists.canScaled(+value, pictureBox1.Width, pictureBox1.Height, lists))
-                        {
-                            lists.changesize(+value, pictureBox1.Width, pictureBox1.Height, lists);
-                        }
+                        Isscale = true;
                         break;
-                    
+
+                }
+                if (Ismove&&lists.canMove(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists))
+                {
+                    lists.move(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists);
+                }
+                if (Isscale&&lists.canScaled(valuex, pictureBox1.Width, pictureBox1.Height, lists))
+                {
+                    lists.changesize(valuex, pictureBox1.Width, pictureBox1.Height, lists);
                 }
                 PaintAll();
             }
             
         }
+
         public void refreshGroup()
         {
             id = 0;
             listGroup.Items.Clear();
-            listGroup.Items.Add("Nothing ");
-            refr(id, lists);
-            void refr(int id_,Mylist mylist)
+            listGroup.Items.Add("No one ");
+            refr(lists);
+
+            void refr(Mylist mylist)
             {
                 for (int i = 0; i < mylist.getSize(); i++)
                 {
                     if (mylist.getObj(i).getCode() == 'L')
                     {
-                        id_++;
-                        ((Mylist)mylist.getObj(i)).setId(id_);
-                        listGroup.Items.Add("group " + id_.ToString());
-                        refr(id_, ((Mylist)mylist.getObj(i)));
+                        id++;
+                        ((Mylist)mylist.getObj(i)).setId(id);
+                        listGroup.Items.Add("group " + id.ToString());
+                        refr(((Mylist)mylist.getObj(i)));
                     }
                 }
             }
@@ -195,18 +198,16 @@ namespace OOP7
             PaintAll();
         }
 
-        private void listGroup_SelectedIndexChanged(object sender, EventArgs e)
+        private void button_ApplyGroup_Click(object sender, EventArgs e)
         {
             lists.refreshSelected(lists);
             int ID = listGroup.SelectedIndex;
-            if (ID == 0) 
+            if (ID != 0) 
             {
-                PaintAll();
+               lists.toSelectInId(ID);
             }
-            else
-            {
-                lists.toSelectInId(ID);
-            }
+            PaintAll();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -223,6 +224,11 @@ namespace OOP7
             {
                 lists.getObj(i).save(path);
             }
+        }
+
+        private void dontTouchKeyboard(object sender, KeyEventArgs e)
+        {                
+            e.SuppressKeyPress = true;
         }
     }
 }

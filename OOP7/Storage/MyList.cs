@@ -154,7 +154,6 @@ namespace OOP7
         //Реализация Визуальной части----------------------------------------------------------------------------
         //всё что выше надеюсь не тронем-------------------------------------------------------------------------
         private bool Selectonein;
-        private int size;
         private int id;
 
         public override char getCode()
@@ -168,7 +167,6 @@ namespace OOP7
             Selected = false;
             redpen = new Pen(Color.Gold);
             redpen.Width = 1;
-            size = getSize();
         }
 
         public void setId(int id)

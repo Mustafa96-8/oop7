@@ -34,10 +34,9 @@ namespace OOP7
         public Circle(Circle copy)
         {
             initcomp();
-            x = copy.x;
-            y = copy.y;
+            init(copy);
             R = copy.R;
-            Selected = copy.Selected;
+            
         }
         
         public override bool isClick(int x,int y, bool isCtrl, Mylist mylist)

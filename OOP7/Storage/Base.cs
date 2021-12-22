@@ -10,13 +10,23 @@ namespace OOP7
         protected Pen redpen;
         protected Pen goldpen;
         public int x, y;
-
+        protected bool Selected = false;
+        protected Brush br = Brushes.White;
         public virtual void initcomp()
         {
             mainpen = new Pen(Color.Black);
             mainpen.Width = 1;
             redpen = new Pen(Color.Red);
             redpen.Width = 1;
+        }
+
+        public virtual void init(Base copy)
+        {
+            x = copy.x;
+            y = copy.y;
+            br = copy.br;
+            br = copy.br;
+            Selected = copy.Selected;
         }
 
         public virtual void setmainpen(string pen)
@@ -50,8 +60,7 @@ namespace OOP7
             }
         }
 
-        protected bool Selected=false;
-        protected Brush br = Brushes.White;
+        
 		public virtual char getCode()
         {
             return 'B';

@@ -38,11 +38,10 @@ namespace OOP7
         public Rectangle(Rectangle copy)
         {
             initcomp();
-            x = copy.x;
-            y = copy.y;
+            init(copy);
             a = copy.a;
             b = copy.b;
-            Selected = copy.Selected;
+
         }
 
         public override bool isClick(int x, int y,bool isCtrl,Mylist mylist)

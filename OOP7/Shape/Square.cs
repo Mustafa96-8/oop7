@@ -35,10 +35,8 @@ namespace OOP7
         public Square(Square copy)
         {
             initcomp();
-            x = copy.x;
-            y = copy.y;
+            init(copy);
             a = copy.a;
-            Selected = copy.Selected;
         }
 
         public override bool isClick(int x, int y, bool isCtrl, Mylist mylist)
