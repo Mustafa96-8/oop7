@@ -13,68 +13,33 @@ namespace OOP7
     public partial class Form1 : Form
     {
         Mylist lists;
+        PaintBox paintBox;
         bool isCTRL;
-        Bitmap bitmap;
-        Graphics gr ;
         int id;
         public Form1()
         {
             InitializeComponent();
             id = 0;
-            bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            gr = Graphics.FromImage(bitmap);
-            
+            paintBox = new PaintBox(pictureBox1.Width, pictureBox1.Height);
             lists = new Mylist();
             isCTRL = false;
-            pictureBox1.Image = GetBitmap();
-        }
-
-        public void createCCircle(int x, int y)
-        {
-            clearSheet();
-            CCircle circle = new CCircle(x,y,lists, pictureBox1.Width, pictureBox1.Height);
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
-        }
-        public void createRectangle(int x,int y)
-        {
-            clearSheet();
-            Rectangle rectangle = new Rectangle(x, y, lists, pictureBox1.Width, pictureBox1.Height);
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
-        }
-        public void createSquare(int x, int y)
-        {
-            clearSheet();
-            Square square = new Square(x, y, lists, pictureBox1.Width, pictureBox1.Height);
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
-        }
-        public void createTriangle(int x,int y)
-        {
-            clearSheet();
-            Triangle square = new Triangle(x, y, lists, pictureBox1.Width, pictureBox1.Height);
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
+            PaintAll();
         }
 
         public void createGroup()
         {
-            clearSheet();
             id++;
             Mylist group = new Mylist(lists,id);
             listGroup.Items.Add("group " + id.ToString());
 
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
+            PaintAll();
         }
         public void CreateObj(object sender, MouseEventArgs e)
         {
             bool flag=false;
-            int i=0;
             char code;
             int size = lists.getSize();
-            for(i = 0; i < size && (!flag); i++)
+            for(int i = 0; i < size && (!flag); i++)
             {
                 code = lists.getObj(i).getCode();
                 switch (code)
@@ -97,61 +62,16 @@ namespace OOP7
                 }
             }
             if (!flag) {
-                switch (listBox1.SelectedItem.ToString())
-                {
-                    case "Circle":
-                        createCCircle(e.X, e.Y);
-                        break;
-                    case "Rectangle":
-                        createRectangle(e.X, e.Y);
-                        break;
-                    case "Square":
-                        createSquare(e.X, e.Y);
-                        break;
-                    case "Triangle":
-                        createTriangle(e.X, e.Y);
-                        break;
-                    
-                    default:
-                        break;
-                }
+                paintBox.Create(e.X, e.Y, lists, listBox1.SelectedItem.ToString());
             }
-            else
-            {
-                PaintAll(); 
-            }
-            
+            PaintAll();
         }
 
         private void PaintAll()
         {
-            clearSheet();
-            PaintDraw();
-            pictureBox1.Image = GetBitmap();
-            
+            paintBox.Draw(lists);
+            pictureBox1.Image = paintBox.GetBitmap();
         }
-
-        public void clearSheet()
-        {
-            gr.Clear(Color.White);
-        }
-
-        public void PaintDraw()//отрисовка всех объектов
-        {
-            if (lists.getSize() == 0)
-                return;
-            for (int i = 0; i < lists.getSize(); i++)
-            {
-                lists.getObj(i).print(gr);
-            }
-            
-        }
-
-        public Bitmap GetBitmap()
-        {
-            return bitmap;
-        }
-
 
         private void btnChangeColor(object sender, EventArgs e)
         {
@@ -159,7 +79,10 @@ namespace OOP7
             lists.setBrush(listColor.SelectedItem.ToString());
             PaintAll();
         }
-
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!e.Control) isCTRL = false;
+        }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             int value = 1;
@@ -173,7 +96,6 @@ namespace OOP7
             }
             else
             {
-                
                 switch (e.KeyCode)
                 {
                     case Keys.Delete:
@@ -269,7 +191,6 @@ namespace OOP7
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
             createGroup();
-
             PaintAll();
         }
 
@@ -285,11 +206,6 @@ namespace OOP7
             {
                 lists.toSelectInId(ID);
             }
-        }
-
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (!e.Control) isCTRL = false;
         }
     }
 }
