@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace OOP7
 {
@@ -71,7 +72,6 @@ namespace OOP7
         {
             if (isEmpty())
             {
-                
                 return;
             }
             if (last.base_ == _base)
@@ -400,6 +400,18 @@ namespace OOP7
                     }
                 }
             }
+        }
+
+        public override void save(string path)
+        {
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine("{0} {1} {2}", getCode(), getId(), getSize());
+            writer.Close();
+            for(int i = 0; i < getSize(); i++)
+            {
+                getObj(i).save(path);
+            }
+            writer.Close();
         }
     }
 }

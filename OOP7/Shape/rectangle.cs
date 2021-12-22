@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace OOP7
 {
@@ -89,6 +90,12 @@ namespace OOP7
         {
             a += size *2* a/b;
             b += size *2;
+        }
+        public override void save(string path)
+        {
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine("{0} {1} {2} {3} {4}", getCode(), x, y, a, b);
+            writer.Close();
         }
     }
 }

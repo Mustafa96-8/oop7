@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-
+using System.IO;
 
 namespace OOP7
 {
@@ -21,7 +21,6 @@ namespace OOP7
 
         public Square(int x, int y, Mylist mylist, int width, int height)
         {
-
             initcomp();
             if ((x + a / 2 < width) && (y + a / 2 < height) && (x - a / 2 > 0) && (y - a / 2 > 0))//если есть место для объекта создаём
             {
@@ -86,8 +85,11 @@ namespace OOP7
         {
             a += size * 2;
         }
-
-
-
+        public override void save(string path)
+        {
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine("{0} {1} {2} {3}", getCode(), x, y, a);
+            writer.Close();
+        }
     }
 }

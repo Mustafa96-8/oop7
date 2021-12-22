@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace OOP7
 {
 
-    public class CCircle : Base
+    public class Circle : Base
     {
         private int R;
 
@@ -17,7 +18,7 @@ namespace OOP7
             base.initcomp();
             R = 20;
         }
-        public CCircle(int x, int y, Mylist mylist, int width, int height)
+        public Circle(int x, int y, Mylist mylist, int width, int height)
         {
 
             initcomp();
@@ -30,7 +31,7 @@ namespace OOP7
                 mylist.add(this);
             }
         }
-        public CCircle(CCircle copy)
+        public Circle(Circle copy)
         {
             initcomp();
             x = copy.x;
@@ -88,6 +89,11 @@ namespace OOP7
         {
             R += size;
         }
-
+        public override void save(string path)
+        {
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine("{0} {1} {2} {3}", getCode(),x,y,R);
+            writer.Close();
+        }
     }
 }

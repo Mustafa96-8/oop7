@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OOP7
 {
@@ -45,7 +46,7 @@ namespace OOP7
                 switch (code)
                 {
                     case 'C':
-                        flag = ((CCircle)lists.getObj(i)).isClick(e.X, e.Y,isCTRL,lists);    
+                        flag = ((Circle)lists.getObj(i)).isClick(e.X, e.Y,isCTRL,lists);    
                         break;
                     case 'R':
                         flag = ((Rectangle)lists.getObj(i)).isClick(e.X, e.Y,isCTRL, lists);
@@ -205,6 +206,22 @@ namespace OOP7
             else
             {
                 lists.toSelectInId(ID);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string path = "savedata.txt";
+            FileInfo fileInfo = new FileInfo(path);
+            if (fileInfo.Exists)
+                fileInfo.Delete();
+
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine(lists.getSize());
+            writer.Close();
+            for (int i = 0; i < lists.getSize(); i++)
+            {
+                lists.getObj(i).save(path);
             }
         }
     }

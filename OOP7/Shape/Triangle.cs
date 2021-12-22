@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace OOP7
 {
@@ -109,6 +110,11 @@ namespace OOP7
             a += size;
             initPoint();
         }
-
+        public override void save(string path)
+        {
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine("{0} {1} {2} {3} {4}", getCode(), x, y, a, h);
+            writer.Close();
+        }
     }
 }

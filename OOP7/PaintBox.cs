@@ -35,7 +35,7 @@ namespace OOP7
             switch (name)
             {
                 case "Circle":
-                    CCircle circle = new CCircle(x, y, mylist, width, height);
+                    Circle circle = new Circle(x, y, mylist, width, height);
                     break;
                 case "Rectangle":
                     Rectangle rectangle = new Rectangle(x, y, mylist, width, height);

@@ -17,7 +17,6 @@ namespace OOP7
             mainpen.Width = 1;
             redpen = new Pen(Color.Red);
             redpen.Width = 1;
-            goldpen = new Pen(Color.Gold);
         }
 
         public virtual void setmainpen(string pen)
@@ -138,7 +137,14 @@ namespace OOP7
         {
             if (Selected) list.deleteObj(this);
         }
-        
+        public virtual void save(string path)
+        {
+
+        }
+        public virtual void load(string path)
+        {
+
+        }
     }
     class MyBaseFactory
 	{
@@ -149,7 +155,7 @@ namespace OOP7
 			switch (p.getCode())
 			{
                 case 'C':
-					_base = new CCircle((CCircle)p);
+					_base = new Circle((Circle)p);
 					break;
                 case 'R':
                     _base = new Rectangle((Rectangle)p);
