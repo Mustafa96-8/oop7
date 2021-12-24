@@ -83,7 +83,6 @@ namespace OOP7
                 }
             }
             return false;
-            
         }
 
         public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
@@ -97,9 +96,10 @@ namespace OOP7
                 bool flag=true;
                 for (int i = 0; i < mylist.getSize(); i++)
                 {
-                    if (mylist.getObj(i).getCode() == 'L')
+                    Base p = mylist.getObj(i);
+                    if (p.getCode() == 'L')
                     {
-                        flag= canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
+                        flag= canMove(x_,y_,width,height,(Mylist)p);
                         if (!flag)
                         {
                             break;
@@ -109,7 +109,7 @@ namespace OOP7
                     {
                         x += x_;
                         y += y_;
-                        flag = !collision(mylist.getObj(i));
+                        flag = !collision(p);
                         x -= x_;
                         y -= y_;
                         if (!flag)
@@ -121,12 +121,13 @@ namespace OOP7
                 return (flag);
             }
         }
+
         public virtual void move(int x_, int y_, int width, int height,Mylist mylist)
         {
             if (slime)
             {
                 Observer observer = new Observer();
-                observer.moveisslime(this,x_,y_,mylist);
+                observer.moveisslime(this,x_,y_,width,height,mylist);
             }
             x += x_;
             y += y_;

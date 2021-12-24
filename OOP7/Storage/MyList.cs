@@ -304,7 +304,6 @@ namespace OOP7
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-
             bool flag = true;
             for (int i = 0; i < getSize(); i++)
             {

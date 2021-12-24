@@ -9,7 +9,7 @@ namespace OOP7
         bool collision(Base p, Mylist mylist);
         void toSlime(bool value,Mylist mylist);
 
-        void move(int x_,int y_,Mylist mylist);
+        void move(int x_,int y_, int width, int height, Mylist mylist);
     }
     public class Observer
     {
@@ -30,7 +30,7 @@ namespace OOP7
             }
         }
 
-        public void moveisslime(Base p,int x_, int y_, Mylist mylist)
+        public void moveisslime(Base p,int x_, int y_, int width, int height, Mylist mylist)
         {
             for(int i = 0; i < mylist.getSize(); i++)
             {
@@ -39,9 +39,8 @@ namespace OOP7
                     if (collision(p, mylist.getObj(i)))
                     {
 
-                        
+                        mylist.getObj(i).move(x_, y_, width, height, mylist); 
                     }
-
                 }
             }
         }
