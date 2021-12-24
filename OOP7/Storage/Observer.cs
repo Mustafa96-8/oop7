@@ -8,6 +8,8 @@ namespace OOP7
     {
         bool collision(Base p, Mylist mylist);
         void toSlime(bool value,Mylist mylist);
+
+        void move(int x_,int y_,Mylist mylist);
     }
     public class Observer
     {
@@ -28,34 +30,43 @@ namespace OOP7
             }
         }
 
-
-        public bool collision(Base p, Mylist mylist)// Проверяет на коллизию объект 
+        public void moveisslime(Base p,int x_, int y_, Mylist mylist)
         {
-            if (p.getCode() == 'L') 
+            for(int i = 0; i < mylist.getSize(); i++)
             {
-                //return false;
-            }
-            Point leftup = new Point(p.x - p.sizecollision / 2, p.y - p.sizecollision / 2);
-            Point rightup = new Point(p.x + p.sizecollision / 2, p.y - p.sizecollision / 2);
-            Point leftdn = new Point(p.x - p.sizecollision / 2, p.y + p.sizecollision / 2);
-            Point rightdn = new Point(p.x + p.sizecollision / 2, p.y + p.sizecollision / 2);
-
-            for (int i = 0; i < mylist.getSize(); i++)
-            {
-                //p2 это объект из листа по индексу
-                Base p2 = mylist.getObj(i);
-                if (p2 != p)
+                if (mylist.getObj(i).getCode() != 'L')
                 {
-                    float size = p2.sizecollision / 2;
-                    if (((p2.x + size) >= leftup.X) && ((p2.y + size) >= leftup.Y) && 
-                        ((p2.x - size) <= rightup.X)&& ((p2.y + size) >= rightup.Y) &&
-                        ((p2.x + size) >= leftdn.X)&& ((p2.y - size) <= leftdn.Y) &&
-                        ((p2.x - size) <= rightdn.X)&& ((p2.y - size) <= rightdn.Y))
+                    if (collision(p, mylist.getObj(i)))
                     {
-                        return true;
+
+                        
                     }
+
                 }
             }
+        }
+
+
+        public bool collision(Base p1, Base p2)// Проверяет на коллизию объект 
+        {
+            Point leftup = new Point(p1.x - p1.sizecollision / 2, p1.y - p1.sizecollision / 2);
+            Point rightup = new Point(p1.x + p1.sizecollision / 2, p1.y - p1.sizecollision / 2);
+            Point leftdn = new Point(p1.x - p1.sizecollision / 2, p1.y + p1.sizecollision / 2);
+            Point rightdn = new Point(p1.x + p1.sizecollision / 2, p1.y + p1.sizecollision / 2);
+
+            //p2 это объект из листа по индексу
+            if (p2 != p1)
+            {
+                float size = p2.sizecollision / 2;
+                if (((p2.x + size) >= leftup.X) && ((p2.y + size) >= leftup.Y) && 
+                    ((p2.x - size) <= rightup.X)&& ((p2.y + size) >= rightup.Y) &&
+                    ((p2.x + size) >= leftdn.X)&& ((p2.y - size) <= leftdn.Y) &&
+                    ((p2.x - size) <= rightdn.X)&& ((p2.y - size) <= rightdn.Y))
+                {
+                    return true;
+                }
+            }
+            
             return false;
         }
 

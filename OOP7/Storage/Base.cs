@@ -88,43 +88,49 @@ namespace OOP7
 
         public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            
-            bool flag=true;
-            for (int i = 0; i < mylist.getSize(); i++)
+            if (slime)
             {
-                if (mylist.getObj(i).getCode() == 'L')
-                {
-                    flag= canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
-                    if (!flag)
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    x += x_;
-                    y += y_;
-                    flag = !collision(mylist.getObj(i));
-                    x -= x_;
-                    y -= y_;
-                    if (!flag)
-                    {
-                        break;
-                    }
-                }
+                return true;
             }
-            return (flag);
-            
+            else
+            {
+                bool flag=true;
+                for (int i = 0; i < mylist.getSize(); i++)
+                {
+                    if (mylist.getObj(i).getCode() == 'L')
+                    {
+                        flag= canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
+                        if (!flag)
+                        {
+                            break;
+                        }
+                    }
+                    else 
+                    {
+                        x += x_;
+                        y += y_;
+                        flag = !collision(mylist.getObj(i));
+                        x -= x_;
+                        y -= y_;
+                        if (!flag)
+                        {
+                            break;
+                        }
+                    }
+                }
+                return (flag);
+            }
         }
-        public virtual void move(int x_, int y_, int width, int height)
+        public virtual void move(int x_, int y_, int width, int height,Mylist mylist)
         {
-            x += x_;
-            y += y_;
-            /*if (slime)
+            if (slime)
             {
                 Observer observer = new Observer();
-                observer.move();
-            }*/
+                observer.moveisslime(this,x_,y_,mylist);
+            }
+            x += x_;
+            y += y_;
+            
         }
 
         public virtual bool canScaled(int size, int width, int height, Mylist mylist)
@@ -143,11 +149,11 @@ namespace OOP7
                 }
                 else if (mylist.getObj(i)!=this)
                 {
-                    mylist.getObj(i).changesize(size, width, height);
+                    mylist.getObj(i).changesize(size, width, height, mylist);
 
                     flag = !collision(mylist.getObj(i));
 
-                    mylist.getObj(i).changesize(-size, width, height);
+                    mylist.getObj(i).changesize(-size, width, height, mylist);
 
                     if (!flag)
                     {
@@ -158,7 +164,7 @@ namespace OOP7
             return (flag);
             
         }
-        public virtual void changesize(int size, int width, int height)
+        public virtual void changesize(int size, int width, int height, Mylist mylist)
         {
         }
         public virtual void refreshSelected(Mylist mylist)

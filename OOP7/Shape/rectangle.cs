@@ -87,7 +87,7 @@ namespace OOP7
             return (base.canScaled(size, width, height, mylist) && (b + size * 2 > 5) && (x + a / 2 + (size * (a / b)) < width-5) 
                 && (y + b / 2 + size  < height-5) && (x - a / 2 - (size * (a / b)) > 5) && (y - b / 2 - size > 5));
         }
-        public override void changesize(int size, int width, int height)
+        public override void changesize(int size, int width, int height, Mylist mylist)
         {
             a += size *2* a/b;
             b += size *2;

@@ -143,11 +143,11 @@ namespace OOP7
                 }
                 if (Ismove&&lists.canMove(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists))
                 {
-                    lists.move(valuex, valuey, pictureBox1.Width, pictureBox1.Height);
+                    lists.move(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists);
                 }
                 if (Isscale&&lists.canScaled(valuex, pictureBox1.Width, pictureBox1.Height, lists))
                 {
-                    lists.changesize(valuex, pictureBox1.Width, pictureBox1.Height);
+                    lists.changesize(valuex, pictureBox1.Width, pictureBox1.Height, lists);
                 }
                 PaintAll();
             }

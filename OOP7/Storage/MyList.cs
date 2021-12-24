@@ -304,6 +304,7 @@ namespace OOP7
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
+
             bool flag = true;
             for (int i = 0; i < getSize(); i++)
             {
@@ -315,7 +316,7 @@ namespace OOP7
                 else if (getObj(i).getSelect())
                 {
                     flag = getObj(i).canMove(x_, y_, width, height, mylist);
-                    if (!flag ) break;
+                    if (!flag) break;
                 }
             }
             return flag;
@@ -353,17 +354,17 @@ namespace OOP7
             return flag;
         }
 
-        public override void move(int x_, int y_, int width, int height)
+        public override void move(int x_, int y_, int width, int height, Mylist mylist)
         {
             for (int i = 0; i < getSize(); i++)
             {
                 if (getObj(i).getCode() == 'L')
                 {
-                    ((Mylist)getObj(i)).move(x_, y_, width, height);
+                    ((Mylist)getObj(i)).move(x_, y_, width, height, mylist);
                 }
                 else if (getObj(i).getSelect())
                 {
-                    getObj(i).move(x_, y_, width, height);
+                    getObj(i).move(x_, y_, width, height,mylist);
                 }
             }
         }
@@ -386,17 +387,17 @@ namespace OOP7
             }
             return flag;
         }
-        public override void changesize(int size_,  int width, int height)
+        public override void changesize(int size_,  int width, int height,Mylist mylist)
         {
             for (int i = 0; i < getSize(); i++)
             {
                 if (getObj(i).getCode() == 'L')
                 {
-                    ((Mylist)getObj(i)).changesize(size_, width, height);
+                    ((Mylist)getObj(i)).changesize(size_, width, height, mylist);
                 }
                 else if (getObj(i).getSelect())
                 {
-                    getObj(i).changesize(size_, width, height);
+                    getObj(i).changesize(size_, width, height, mylist);
                 }
             }
         }

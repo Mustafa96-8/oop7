@@ -83,7 +83,7 @@ namespace OOP7
         {
             return (base.canScaled(size, width, height, mylist)&&(R + size > 5) && (x + R + size < width-5) && (y + size + R < height-5) && (x - size - R > 5) && (y - size - R > 5));
         }
-        public override void changesize(int size, int width, int height)
+        public override void changesize(int size, int width, int height, Mylist mylist)
         {
             R += size;
             sizecollision = 2*R;
