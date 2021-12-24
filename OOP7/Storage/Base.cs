@@ -15,7 +15,18 @@ namespace OOP7
         protected Brush br = Brushes.White;
         protected string color = "White";
 
-        protected bool slime=false; 
+        protected bool slime=false;
+        protected bool isSticked = false;
+
+        public bool getIsSticked()
+        {
+            return isSticked;
+        }
+        public void setIsSticked(bool value)
+        {
+            isSticked = value;
+        }
+
         public virtual void initcomp()
         {
             mainpen = new Pen(Color.Black);
@@ -74,10 +85,10 @@ namespace OOP7
             if (p2 != this)
             {
                 float size = p2.sizecollision / 2;
-                if (((p2.x + size) >= leftup.X) && ((p2.y + size) >= leftup.Y) &&
-                    ((p2.x - size) <= rightup.X) && ((p2.y + size) >= rightup.Y) &&
-                    ((p2.x + size) >= leftdn.X) && ((p2.y - size) <= leftdn.Y) &&
-                    ((p2.x - size) <= rightdn.X) && ((p2.y - size) <= rightdn.Y))
+                if (((p2.x + size) > leftup.X) && ((p2.y + size) > leftup.Y) &&
+                    ((p2.x - size) < rightup.X) && ((p2.y + size) > rightup.Y) &&
+                    ((p2.x + size) > leftdn.X) && ((p2.y - size) < leftdn.Y) &&
+                    ((p2.x - size) < rightdn.X) && ((p2.y - size) < rightdn.Y))
                 {
                     return true;
                 }
@@ -124,13 +135,15 @@ namespace OOP7
 
         public virtual void move(int x_, int y_, int width, int height,Mylist mylist)
         {
+
             if (slime)
             {
                 Observer observer = new Observer();
-                observer.moveisslime(this,x_,y_,width,height,mylist);
+                observer.moveisslime(this, x_, y_, width, height, mylist);
             }
-            x += x_;
-            y += y_;
+
+                x += x_;
+                y += y_;
             
         }
 
@@ -196,6 +209,10 @@ namespace OOP7
         public virtual void setSlime(bool sl)
         {
             slime = sl;
+            if (slime)
+            {
+                mainpen = Pens.Cyan;
+            }
         }
 
         public virtual void save(string path)

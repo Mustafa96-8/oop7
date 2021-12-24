@@ -81,14 +81,14 @@ namespace OOP7
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            int valuex = 3;
-            int valuey = 3;
+            int valuex = 1;
+            int valuey = 1;
             bool Ismove = false;
             bool Isscale = false;
             if (e.Shift)
             {
-                /*valuex = 5;
-                valuey = 5;*/
+                valuex = 10;
+                valuey = 10;
             }
             if (e.KeyCode == Keys.ControlKey)
             {
@@ -206,6 +206,7 @@ namespace OOP7
 
         private void save_button(object sender, EventArgs e)
         {
+            pictureBox1.Enabled = true;
             FileInfo fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
                 fileInfo.Delete();
@@ -221,6 +222,7 @@ namespace OOP7
 
         private void load_button(object sender, EventArgs e)
         {
+            pictureBox1.Enabled = true;
             FileInfo fileInfo = new FileInfo(path);
             if (fileInfo.Exists)
             {
