@@ -87,7 +87,7 @@ namespace OOP7
 
         public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            if (slime)
+            if (getSlime())
             {
                 return true;
             }

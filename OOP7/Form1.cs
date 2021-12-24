@@ -81,14 +81,14 @@ namespace OOP7
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            int valuex = 1;
-            int valuey = 1;
+            int valuex = 3;
+            int valuey = 3;
             bool Ismove = false;
             bool Isscale = false;
             if (e.Shift)
             {
-                valuex = 10;
-                valuey = 10;
+                /*valuex = 5;
+                valuey = 5;*/
             }
             if (e.KeyCode == Keys.ControlKey)
             {
