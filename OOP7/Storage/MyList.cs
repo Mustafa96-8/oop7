@@ -305,16 +305,16 @@ namespace OOP7
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
             bool flag = true;
-            for (int i = 0; i < mylist.getSize(); i++)
+            for (int i = 0; i < getSize(); i++)
             {
-                if (mylist.getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L')
                 {
-                    flag = ((Mylist)mylist.getObj(i)).canMove(x_, y_, width, height, (Mylist)mylist.getObj(i));
+                    flag = ((Mylist)getObj(i)).canMove(x_, y_, width, height, mylist);
                     if (!flag) break;
                 }
-                else if (mylist.getObj(i).getSelect())
+                else if (getObj(i).getSelect())
                 {
-                    flag = mylist.getObj(i).canMove(x_, y_, width, height, mylist);
+                    flag = getObj(i).canMove(x_, y_, width, height, mylist);
                     if (!flag ) break;
                 }
             }
@@ -371,16 +371,16 @@ namespace OOP7
         public override bool canScaled(int size_, int width, int height, Mylist mylist)
         {
             bool flag = true;
-            for (int i = 0; i < mylist.getSize(); i++)
+            for (int i = 0; i < getSize(); i++)
             {
-                if (mylist.getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L')
                 {
-                    flag = ((Mylist)mylist.getObj(i)).canScaled(size_, width, height, (Mylist)mylist.getObj(i));
+                    flag = ((Mylist)getObj(i)).canScaled(size_, width, height, mylist);
                     if (flag == false) return false;
                 }
-                else if (mylist.getObj(i).getSelect())
+                else if (getObj(i).getSelect())
                 {
-                    flag = mylist.getObj(i).canScaled(size_, width, height, mylist);
+                    flag = getObj(i).canScaled(size_, width, height, mylist);
                     if (flag == false) return false;
                 }
             }

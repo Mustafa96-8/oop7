@@ -94,7 +94,7 @@ namespace OOP7
             {
                 if (mylist.getObj(i).getCode() == 'L')
                 {
-                    flag=((Mylist)mylist.getObj(i)).canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
+                    flag= canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
                     if (!flag)
                     {
                         break;
@@ -135,13 +135,13 @@ namespace OOP7
             {
                 if (mylist.getObj(i).getCode() == 'L')
                 {
-                    flag = !((Mylist)mylist.getObj(i)).canScaled(size, width, height, (Mylist)mylist.getObj(i));
-                    if (flag)
+                    flag = mylist.getObj(i).canScaled(size, width, height, (Mylist)mylist.getObj(i));
+                    if (!flag)
                     {
                         break;
                     }
                 }
-                else if (!mylist.getObj(i).getSelect())
+                else if (mylist.getObj(i)!=this)
                 {
                     mylist.getObj(i).changesize(size, width, height);
 
