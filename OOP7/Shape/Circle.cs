@@ -17,6 +17,7 @@ namespace OOP7
         {
             base.initcomp();
             R = 20;
+            sizecollision = R;
         }
         public Circle()
         {
@@ -78,18 +79,15 @@ namespace OOP7
         {
             return ((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0));//Проверяем не выйдем ли мы за границу Бокса
         }
-        public override void move(int x_, int y_,int width, int height, Mylist mylist)//Передвижение объекта/ов
-        {
-            x += x_;
-            y += y_;    
-        }
+
         public override bool canScaled(int size, int width, int height, Mylist mylist)
         {
             return ((R + size > 5) && (x + R + size < width-5) && (y + size + R < height-5) && (x - size - R > 5) && (y - size - R > 5));
         }
-        public override void changesize(int size, int width, int height, Mylist mylist)
+        public override void changesize(int size, int width, int height)
         {
             R += size;
+            sizecollision = R;
         }
         public override void save(string path)
         {

@@ -10,9 +10,12 @@ namespace OOP7
         protected Pen redpen;
         protected Pen goldpen;
         public int x, y;
+        public int sizecollision;
         protected bool Selected = false;
         protected Brush br = Brushes.White;
         protected string color = "White";
+
+        protected bool slime=false; 
         public virtual void initcomp()
         {
             mainpen = new Pen(Color.Black);
@@ -28,6 +31,7 @@ namespace OOP7
             br = copy.br;
             Selected = copy.Selected;
             color = copy.color;
+            sizecollision = copy.sizecollision;
         }
 
         public virtual void setmainpen(string pen)
@@ -60,19 +64,43 @@ namespace OOP7
 
         }
 
+        public virtual bool collision(Base p, Base p2)
+        {
+            if (p.getCode() == 'L')
+            {
+                return false;
+            }
+            Point leftup = new Point(p.x - p.sizecollision / 2, p.y - p.sizecollision / 2);
+            Point rightup = new Point(p.x + p.sizecollision / 2, p.y - p.sizecollision / 2);
+            Point leftdn = new Point(p.x - p.sizecollision / 2, p.y + p.sizecollision / 2);
+            Point rightdn = new Point(p.x + p.sizecollision / 2, p.y + p.sizecollision / 2);
+
+            float size = p2.sizecollision / 2;
+            if ((((p2.x + size) >= leftup.X) && (p2.y + size) >= leftup.Y) &&
+                (((p2.x - size) <= rightup.X) && (p2.y + size) >= rightup.Y) &&
+                (((p2.x + size) >= leftdn.X) && (p2.y - size) <= leftdn.Y) &&
+                (((p2.x - size) <= rightdn.X) && (p2.y - size) <= rightdn.Y))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
             return false;
         }
-        public virtual void move(int x_, int y_,  int width, int height,Mylist mylist)
+        public virtual void move(int x_, int y_, int width, int height)
         {
+            x += x_;
+            y += y_;
         }
 
         public virtual bool canScaled(int size, int width, int height, Mylist mylist)
         {
             return false;
         }
-        public virtual void changesize(int size, int width, int height, Mylist mylist)
+        public virtual void changesize(int size, int width, int height)
         {
         }
         public virtual void refreshSelected(Mylist mylist)
@@ -94,6 +122,17 @@ namespace OOP7
         {
             if (Selected) list.deleteObj(this);
         }
+
+        public virtual bool getSlime()
+        {
+            return slime;
+        }
+
+        public virtual void setSlime(bool sl)
+        {
+            slime = sl;
+        }
+
         public virtual void save(string path)
         {
 
@@ -102,10 +141,12 @@ namespace OOP7
         {
 
         }
+        
     }
     class MyBaseFactory
 	{
         public MyBaseFactory() { }
+
 		public Base createBase(Base p)
 		{
 			Base _base = null;

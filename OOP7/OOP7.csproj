@@ -61,6 +61,7 @@
     <Compile Include="Shape\Rectangle.cs" />
     <Compile Include="Shape\Square.cs" />
     <Compile Include="Shape\Triangle.cs" />
+    <Compile Include="Storage\Observer.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

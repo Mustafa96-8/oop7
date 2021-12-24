@@ -28,6 +28,7 @@ namespace OOP7
 
             PaintAll();
         }
+
         public void CreateObj(object sender, MouseEventArgs e)
         {
             bool flag=false;
@@ -141,11 +142,11 @@ namespace OOP7
                 }
                 if (Ismove&&lists.canMove(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists))
                 {
-                    lists.move(valuex, valuey, pictureBox1.Width, pictureBox1.Height, lists);
+                    lists.move(valuex, valuey, pictureBox1.Width, pictureBox1.Height);
                 }
                 if (Isscale&&lists.canScaled(valuex, pictureBox1.Width, pictureBox1.Height, lists))
                 {
-                    lists.changesize(valuex, pictureBox1.Width, pictureBox1.Height, lists);
+                    lists.changesize(valuex, pictureBox1.Width, pictureBox1.Height);
                 }
                 PaintAll();
             }
@@ -247,5 +248,7 @@ namespace OOP7
         {                
             e.SuppressKeyPress = true;
         }
+
+        
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace OOP7
 {
-    public class Triangle:Base
+    public class Triangle : Base
     {
         private int a;
         private double h;
@@ -32,6 +32,7 @@ namespace OOP7
         {
             base.initcomp();
             a = 40;
+            sizecollision = a;
             initPoint();
         }
 
@@ -95,11 +96,9 @@ namespace OOP7
         {
             return ((points[0].X + x_ < width - 5) && (points[0].Y + y_ < height - 5) && (points[1].X + x_ > 5) && (points[2].Y + y_ > 5));
         }
-        public override void move(int x_, int y_, int width, int height, Mylist mylist)
+        public override void move(int x_, int y_, int width, int height)
         {
-            initPoint();
-            x += x_;
-            y += y_;
+            base.move(x_, y_,width,height);
             initPoint();
         }
 
@@ -107,9 +106,10 @@ namespace OOP7
         {
             return ((a + size > 15) && (points[0].X + size < width-5) && (points[0].Y + size  < height-5) && (points[1].X - size >5) && (points[2].Y - size > 5));
         }
-        public override void changesize(int size, int width, int height, Mylist mylist)
+        public override void changesize(int size, int width, int height)
         {
             a += size;
+            sizecollision = a;
             initPoint();
         }
         public override void save(string path)

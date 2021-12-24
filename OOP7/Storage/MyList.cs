@@ -283,6 +283,24 @@ namespace OOP7
                 }
             }
         }
+        /*public override bool collision(Base p, Base p2)
+        {
+            bool flag = true;
+            for (int i = 0; i < getSize(); i++)
+            {
+                if (getObj(i).getCode() == 'L')
+                {
+                    flag = ((Mylist)getObj(i)).collision(,(Mylist)getObj(i));
+                    if (flag == false) return false;
+                }
+                else if (getObj(i).getSelect())
+                {
+                    flag = getObj(i).collision();
+                    if (flag == false) return false;
+                }
+            }
+            return flag;
+        }*/
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
@@ -302,17 +320,18 @@ namespace OOP7
             }
             return flag;
         }
-        public override void move(int x_, int y_, int width, int height,Mylist mylist)
+
+        public override void move(int x_, int y_, int width, int height)
         {
-            for (int i = 0; i < mylist.getSize(); i++)
+            for (int i = 0; i < getSize(); i++)
             {
-                if (mylist.getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L')
                 {
-                    ((Mylist)mylist.getObj(i)).move(x_, y_, width, height, (Mylist)mylist.getObj(i));
+                    ((Mylist)getObj(i)).move(x_, y_, width, height);
                 }
-                else if (mylist.getObj(i).getSelect())
+                else if (getObj(i).getSelect())
                 {
-                    mylist.getObj(i).move(x_, y_, width, height, mylist);
+                    getObj(i).move(x_, y_, width, height);
                 }
             }
         }
@@ -334,17 +353,17 @@ namespace OOP7
             }
             return flag;
         }
-        public override void changesize(int size_,  int width, int height,Mylist mylist)
+        public override void changesize(int size_,  int width, int height)
         {
-            for (int i = 0; i < mylist.getSize(); i++)
+            for (int i = 0; i < getSize(); i++)
             {
-                if (mylist.getObj(i).getCode() == 'L')
+                if (getObj(i).getCode() == 'L')
                 {
-                    ((Mylist)mylist.getObj(i)).changesize(size_, width, height, (Mylist)mylist.getObj(i));
+                    ((Mylist)getObj(i)).changesize(size_, width, height);
                 }
-                else if (mylist.getObj(i).getSelect())
+                else if (getObj(i).getSelect())
                 {
-                    mylist.getObj(i).changesize(size_, width, height, mylist);
+                    getObj(i).changesize(size_, width, height);
                 }
             }
         }
@@ -434,5 +453,8 @@ namespace OOP7
             }
             streamReader.Close();
         }
+
+
+        
     }
 }
