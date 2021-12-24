@@ -64,41 +64,99 @@ namespace OOP7
 
         }
 
-        public virtual bool collision(Base p, Base p2)
+        public virtual bool collision(Base p2)
         {
-            if (p.getCode() == 'L')
-            {
-                return false;
-            }
-            Point leftup = new Point(p.x - p.sizecollision / 2, p.y - p.sizecollision / 2);
-            Point rightup = new Point(p.x + p.sizecollision / 2, p.y - p.sizecollision / 2);
-            Point leftdn = new Point(p.x - p.sizecollision / 2, p.y + p.sizecollision / 2);
-            Point rightdn = new Point(p.x + p.sizecollision / 2, p.y + p.sizecollision / 2);
+            Point leftup = new Point(x - sizecollision / 2, y - sizecollision / 2);
+            Point rightup = new Point(x + sizecollision / 2, y - sizecollision / 2);
+            Point leftdn = new Point(x - sizecollision / 2, y + sizecollision / 2);
+            Point rightdn = new Point(x + sizecollision / 2, y + sizecollision / 2);
 
-            float size = p2.sizecollision / 2;
-            if ((((p2.x + size) >= leftup.X) && (p2.y + size) >= leftup.Y) &&
-                (((p2.x - size) <= rightup.X) && (p2.y + size) >= rightup.Y) &&
-                (((p2.x + size) >= leftdn.X) && (p2.y - size) <= leftdn.Y) &&
-                (((p2.x - size) <= rightdn.X) && (p2.y - size) <= rightdn.Y))
+            if (p2 != this)
             {
-                return true;
+                float size = p2.sizecollision / 2;
+                if (((p2.x + size) >= leftup.X) && ((p2.y + size) >= leftup.Y) &&
+                    ((p2.x - size) <= rightup.X) && ((p2.y + size) >= rightup.Y) &&
+                    ((p2.x + size) >= leftdn.X) && ((p2.y - size) <= leftdn.Y) &&
+                    ((p2.x - size) <= rightdn.X) && ((p2.y - size) <= rightdn.Y))
+                {
+                    return true;
+                }
             }
             return false;
+            
         }
 
         public virtual bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            return false;
+            
+            bool flag=true;
+            for (int i = 0; i < mylist.getSize(); i++)
+            {
+                if (mylist.getObj(i).getCode() == 'L')
+                {
+                    flag=((Mylist)mylist.getObj(i)).canMove(x_,y_,width,height,(Mylist)mylist.getObj(i));
+                    if (!flag)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    x += x_;
+                    y += y_;
+                    flag = !collision(mylist.getObj(i));
+                    x -= x_;
+                    y -= y_;
+                    if (!flag)
+                    {
+                        break;
+                    }
+                }
+            }
+            return (flag);
+            
         }
         public virtual void move(int x_, int y_, int width, int height)
         {
             x += x_;
             y += y_;
+            /*if (slime)
+            {
+                Observer observer = new Observer();
+                observer.move();
+            }*/
         }
 
         public virtual bool canScaled(int size, int width, int height, Mylist mylist)
         {
-            return false;
+            
+            bool flag = true;
+            for (int i = 0; i < mylist.getSize(); i++)
+            {
+                if (mylist.getObj(i).getCode() == 'L')
+                {
+                    flag = !((Mylist)mylist.getObj(i)).canScaled(size, width, height, (Mylist)mylist.getObj(i));
+                    if (flag)
+                    {
+                        break;
+                    }
+                }
+                else if (!mylist.getObj(i).getSelect())
+                {
+                    mylist.getObj(i).changesize(size, width, height);
+
+                    flag = !collision(mylist.getObj(i));
+
+                    mylist.getObj(i).changesize(-size, width, height);
+
+                    if (!flag)
+                    {
+                        break;
+                    }
+                }
+            }
+            return (flag);
+            
         }
         public virtual void changesize(int size, int width, int height)
         {

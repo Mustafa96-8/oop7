@@ -36,6 +36,7 @@
             this.listGroup = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.chBx_slime = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,10 +44,9 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Enabled = false;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(741, 584);
+            this.pictureBox1.Size = new System.Drawing.Size(556, 475);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CreateObj);
@@ -54,10 +54,9 @@
             // btnBrush
             // 
             this.btnBrush.Enabled = false;
-            this.btnBrush.Location = new System.Drawing.Point(765, 15);
-            this.btnBrush.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrush.Location = new System.Drawing.Point(574, 12);
             this.btnBrush.Name = "btnBrush";
-            this.btnBrush.Size = new System.Drawing.Size(63, 49);
+            this.btnBrush.Size = new System.Drawing.Size(51, 40);
             this.btnBrush.TabIndex = 1;
             this.btnBrush.TabStop = false;
             this.btnBrush.Text = "brush";
@@ -68,7 +67,6 @@
             // listColor
             // 
             this.listColor.FormattingEnabled = true;
-            this.listColor.ItemHeight = 16;
             this.listColor.Items.AddRange(new object[] {
             "Blue",
             "Brown",
@@ -77,10 +75,9 @@
             "Purple",
             "Red",
             "White"});
-            this.listColor.Location = new System.Drawing.Point(765, 71);
-            this.listColor.Margin = new System.Windows.Forms.Padding(4);
+            this.listColor.Location = new System.Drawing.Point(574, 58);
             this.listColor.Name = "listColor";
-            this.listColor.Size = new System.Drawing.Size(61, 132);
+            this.listColor.Size = new System.Drawing.Size(51, 108);
             this.listColor.TabIndex = 2;
             this.listColor.SelectedIndexChanged += new System.EventHandler(this.listColor_SelectedIndexChanged);
             this.listColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dontTouchKeyboard);
@@ -88,26 +85,23 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
             this.listBox1.Items.AddRange(new object[] {
             "Circle",
             "Rectangle",
             "Square",
             "Triangle"});
-            this.listBox1.Location = new System.Drawing.Point(765, 482);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.Location = new System.Drawing.Point(574, 392);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(112, 116);
+            this.listBox1.Size = new System.Drawing.Size(85, 95);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dontTouchKeyboard);
             // 
             // btnCreateGroup
             // 
-            this.btnCreateGroup.Location = new System.Drawing.Point(871, 15);
-            this.btnCreateGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateGroup.Location = new System.Drawing.Point(653, 12);
             this.btnCreateGroup.Name = "btnCreateGroup";
-            this.btnCreateGroup.Size = new System.Drawing.Size(104, 49);
+            this.btnCreateGroup.Size = new System.Drawing.Size(78, 40);
             this.btnCreateGroup.TabIndex = 4;
             this.btnCreateGroup.Text = "Create Group";
             this.btnCreateGroup.UseVisualStyleBackColor = true;
@@ -118,13 +112,11 @@
             // 
             this.listGroup.FormattingEnabled = true;
             this.listGroup.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.listGroup.ItemHeight = 16;
             this.listGroup.Items.AddRange(new object[] {
             "No one"});
-            this.listGroup.Location = new System.Drawing.Point(871, 71);
-            this.listGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.listGroup.Location = new System.Drawing.Point(653, 58);
             this.listGroup.Name = "listGroup";
-            this.listGroup.Size = new System.Drawing.Size(103, 132);
+            this.listGroup.Size = new System.Drawing.Size(78, 108);
             this.listGroup.TabIndex = 5;
             this.listGroup.TabStop = false;
             this.listGroup.UseTabStops = false;
@@ -133,10 +125,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(871, 209);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(653, 170);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 34);
+            this.button1.Size = new System.Drawing.Size(78, 28);
             this.button1.TabIndex = 7;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
@@ -145,19 +137,32 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(871, 248);
+            this.button2.Location = new System.Drawing.Point(653, 202);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 30);
+            this.button2.Size = new System.Drawing.Size(77, 24);
             this.button2.TabIndex = 8;
             this.button2.Text = "Load";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.load_button);
             // 
+            // chBx_slime
+            // 
+            this.chBx_slime.AutoSize = true;
+            this.chBx_slime.Location = new System.Drawing.Point(574, 181);
+            this.chBx_slime.Name = "chBx_slime";
+            this.chBx_slime.Size = new System.Drawing.Size(51, 17);
+            this.chBx_slime.TabIndex = 9;
+            this.chBx_slime.Text = "Slime";
+            this.chBx_slime.UseVisualStyleBackColor = true;
+            this.chBx_slime.CheckedChanged += new System.EventHandler(this.chBx_slime_CheckedChanged);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 639);
+            this.ClientSize = new System.Drawing.Size(740, 519);
+            this.Controls.Add(this.chBx_slime);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listGroup);
@@ -167,13 +172,13 @@
             this.Controls.Add(this.btnBrush);
             this.Controls.Add(this.pictureBox1);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -187,6 +192,7 @@
         private System.Windows.Forms.ListBox listGroup;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox chBx_slime;
     }
 }
 

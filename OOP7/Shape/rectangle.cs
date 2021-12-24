@@ -17,8 +17,8 @@ namespace OOP7
         public override void initcomp()
         {
             base.initcomp();
-            a = 50;
-            b = 25;
+            a = 40;
+            b = 20;
             sizecollision = a;
         }
 
@@ -36,6 +36,7 @@ namespace OOP7
                 this.y = y;
                 mylist.refreshSelected(mylist);
                 Selected = true;
+
                 mylist.add(this);
             }
         }
@@ -78,12 +79,12 @@ namespace OOP7
         }
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            return ((x + a / 2 + x_  < width-5) && (y + b / 2 + y_  < height-5) && (x - a / 2 + x_ > 5) && (y - b / 2 + y_ > 5));
+            return (base.canMove(x_, y_, width, height, mylist)) && ((x + a / 2 + x_  < width-5) && (y + b / 2 + y_  < height-5) && (x - a / 2 + x_ > 5) && (y - b / 2 + y_ > 5));
         }
 
         public override bool canScaled(int size, int width, int height, Mylist mylist)
         {
-            return ((b + size * 2 > 5) && (x + a / 2 + (size * (a / b)) < width-5) 
+            return (base.canScaled(size, width, height, mylist) && (b + size * 2 > 5) && (x + a / 2 + (size * (a / b)) < width-5) 
                 && (y + b / 2 + size  < height-5) && (x - a / 2 - (size * (a / b)) > 5) && (y - b / 2 - size > 5));
         }
         public override void changesize(int size, int width, int height)

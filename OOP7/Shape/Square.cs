@@ -16,7 +16,7 @@ namespace OOP7
         public override void initcomp()
         {
             base.initcomp();
-            a = 25;
+            a = 40;
             sizecollision = a;
         }
         public Square()
@@ -72,12 +72,12 @@ namespace OOP7
         }
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            return ((x + a / 2 + x_ < width - 5) && (y + a / 2 + y_ < height - 5) && (x - a / 2 + x_ > 5) && (y - a / 2 + y_  > 5));
+            return (base.canMove(x_, y_, width, height, mylist)) && ((x + a / 2 + x_ < width - 5) && (y + a / 2 + y_ < height - 5) && (x - a / 2 + x_ > 5) && (y - a / 2 + y_  > 5));
         }
 
         public override bool canScaled(int size, int width, int height, Mylist mylist)
         {
-            return ((a + size > 6) && (x + a / 2 + size  < width-5) && (y + a / 2 + size  < height-5) && (x - a / 2 - size  > 5) && (y - a / 2 - size > 5));
+            return (base.canScaled(size, width, height, mylist) && (a + size > 6) && (x + a / 2 + size  < width-5) && (y + a / 2 + size  < height-5) && (x - a / 2 - size  > 5) && (y - a / 2 - size > 5));
         }
         public override void changesize(int size, int width, int height)
         {

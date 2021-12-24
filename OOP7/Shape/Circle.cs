@@ -17,7 +17,7 @@ namespace OOP7
         {
             base.initcomp();
             R = 20;
-            sizecollision = R;
+            sizecollision = 2*R;
         }
         public Circle()
         {
@@ -54,7 +54,6 @@ namespace OOP7
             return false;
         }
         
-        
         public void drawCircle(Graphics gr)//Вывод просто вершины(круга)
         {
             gr.FillEllipse(br, (x - R), (y - R), 2 * R, 2 * R);
@@ -77,17 +76,17 @@ namespace OOP7
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            return ((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0));//Проверяем не выйдем ли мы за границу Бокса
+            return (base.canMove(x_,y_,width,height,mylist))&&((x + x_ + R < width) && (y + y_ + R < height) && (x + x_ - R > 0) && (y + y_ - R > 0));//Проверяем не выйдем ли мы за границу Бокса
         }
 
         public override bool canScaled(int size, int width, int height, Mylist mylist)
         {
-            return ((R + size > 5) && (x + R + size < width-5) && (y + size + R < height-5) && (x - size - R > 5) && (y - size - R > 5));
+            return (base.canScaled(size, width, height, mylist)&&(R + size > 5) && (x + R + size < width-5) && (y + size + R < height-5) && (x - size - R > 5) && (y - size - R > 5));
         }
         public override void changesize(int size, int width, int height)
         {
             R += size;
-            sizecollision = R;
+            sizecollision = 2*R;
         }
         public override void save(string path)
         {

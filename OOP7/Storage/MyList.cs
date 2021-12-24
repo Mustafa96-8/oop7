@@ -283,24 +283,24 @@ namespace OOP7
                 }
             }
         }
-        /*public override bool collision(Base p, Base p2)
+        public override bool collision(Base p2)
         {
-            bool flag = true;
+            bool flag = false;
             for (int i = 0; i < getSize(); i++)
             {
                 if (getObj(i).getCode() == 'L')
                 {
-                    flag = ((Mylist)getObj(i)).collision(,(Mylist)getObj(i));
-                    if (flag == false) return false;
+                    flag = ((Mylist)getObj(i)).collision(p2);
+                    if (flag) break;
                 }
                 else if (getObj(i).getSelect())
                 {
-                    flag = getObj(i).collision();
-                    if (flag == false) return false;
+                    flag = getObj(i).collision(p2);
+                    if (flag) break;
                 }
             }
             return flag;
-        }*/
+        }
 
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
@@ -310,13 +310,45 @@ namespace OOP7
                 if (mylist.getObj(i).getCode() == 'L')
                 {
                     flag = ((Mylist)mylist.getObj(i)).canMove(x_, y_, width, height, (Mylist)mylist.getObj(i));
-                    if (flag == false) return false;
+                    if (!flag) break;
                 }
                 else if (mylist.getObj(i).getSelect())
                 {
                     flag = mylist.getObj(i).canMove(x_, y_, width, height, mylist);
-                    if (flag == false) return false;
+                    if (!flag ) break;
                 }
+            }
+            return flag;
+        }
+
+        public bool canCreate(int x,int y)
+        {
+            Point leftup = new Point(x - 20, y - 20);
+            Point rightup = new Point(x + 20, y - 20);
+            Point leftdn = new Point(x - 20, y + 20);
+            Point rightdn = new Point(x + 20, y + 20);
+            bool flag = true;
+            for (int i = 0; i < getSize(); i++)
+            {
+                
+                if (getObj(i).getCode() == 'L')
+                {
+                    flag=((Mylist)getObj(i)).canCreate(x, y);
+                    if (!flag) { return false; }
+                }
+                else
+                {
+                    Base p2 = getObj(i);
+                    float size = p2.sizecollision / 2;
+                    if (((p2.x + size) >= leftup.X) && ((p2.y + size) >= leftup.Y) &&
+                        ((p2.x - size) <= rightup.X) && ((p2.y + size) >= rightup.Y) &&
+                        ((p2.x + size) >= leftdn.X) && ((p2.y - size) <= leftdn.Y) &&
+                        ((p2.x - size) <= rightdn.X) && ((p2.y - size) <= rightdn.Y))
+                    {
+                        return false;
+                    }
+                }
+
             }
             return flag;
         }
@@ -335,6 +367,7 @@ namespace OOP7
                 }
             }
         }
+
         public override bool canScaled(int size_, int width, int height, Mylist mylist)
         {
             bool flag = true;

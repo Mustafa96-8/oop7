@@ -94,7 +94,7 @@ namespace OOP7
         }
         public override bool canMove(int x_, int y_, int width, int height, Mylist mylist)
         {
-            return ((points[0].X + x_ < width - 5) && (points[0].Y + y_ < height - 5) && (points[1].X + x_ > 5) && (points[2].Y + y_ > 5));
+            return ((base.canMove(x_, y_, width, height, mylist)) && (points[0].X + x_ < width - 5) && (points[0].Y + y_ < height - 5) && (points[1].X + x_ > 5) && (points[2].Y + y_ > 5));
         }
         public override void move(int x_, int y_, int width, int height)
         {
@@ -104,7 +104,7 @@ namespace OOP7
 
         public override bool canScaled(int size, int width, int height, Mylist mylist)
         {
-            return ((a + size > 15) && (points[0].X + size < width-5) && (points[0].Y + size  < height-5) && (points[1].X - size >5) && (points[2].Y - size > 5));
+            return (base.canScaled(size, width, height, mylist) && (a + size > 15) && (points[0].X + size < width-5) && (points[0].Y + size  < height-5) && (points[1].X - size >5) && (points[2].Y - size > 5));
         }
         public override void changesize(int size, int width, int height)
         {

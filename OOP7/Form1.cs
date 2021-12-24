@@ -56,7 +56,8 @@ namespace OOP7
                         break;
                 }
             }
-            if (!flag) {
+            
+            if (!flag&&lists.canCreate(e.X,e.Y)) {
                 paintBox.Create(e.X, e.Y, lists, listBox1.SelectedItem.ToString());
             }
             PaintAll();
@@ -242,6 +243,12 @@ namespace OOP7
                 PaintAll();
                 refreshGroup();
             }
+        }
+
+        private void chBx_slime_CheckedChanged(object sender, EventArgs e)
+        {
+            Observer observer = new Observer();
+            observer.toSlime(chBx_slime.Checked,lists);
         }
 
         private void dontTouchKeyboard(object sender, KeyEventArgs e)
