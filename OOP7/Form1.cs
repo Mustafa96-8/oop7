@@ -87,8 +87,8 @@ namespace OOP7
             bool Isscale = false;
             if (e.Shift)
             {
-                valuex = 10;
-                valuey = 10;
+                valuex = 2;
+                valuey = 2;
             }
             if (e.KeyCode == Keys.ControlKey)
             {
@@ -247,10 +247,10 @@ namespace OOP7
             }
         }
 
-        private void chBx_slime_CheckedChanged(object sender, EventArgs e)
+        private void chBx_slime_chck(object sender, EventArgs e)
         {
             Observer observer = new Observer();
-            observer.toSlime(chBx_slime.Checked,lists);
+            observer.toSlime(true, lists);
         }
 
         private void dontTouchKeyboard(object sender, KeyEventArgs e)
@@ -258,6 +258,10 @@ namespace OOP7
             e.SuppressKeyPress = true;
         }
 
-        
+        private void btn_nSlime_Click(object sender, EventArgs e)
+        {
+            Observer observer = new Observer();
+            observer.toSlime(false, lists);
+        }
     }
 }

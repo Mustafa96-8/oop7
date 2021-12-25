@@ -100,7 +100,17 @@ namespace OOP7
         {
             if (getSlime())
             {
-                return true;
+                bool flag=true;
+                Observer observer = new Observer();
+                
+                flag= observer.canmoveisslime(this,x_,y_,width,height,mylist);
+                if (!flag)
+                {
+                    x += x_;
+                    y += y_;
+                }
+                
+                return flag;
             }
             else
             {
@@ -135,15 +145,18 @@ namespace OOP7
 
         public virtual void move(int x_, int y_, int width, int height,Mylist mylist)
         {
-
-            if (slime)
+            if (isSticked && slime)
+            {
+                return;
+            }
+            if (slime&&Selected&&!isSticked)
             {
                 Observer observer = new Observer();
                 observer.moveisslime(this, x_, y_, width, height, mylist);
             }
-
-                x += x_;
-                y += y_;
+            x += x_;
+            y += y_;
+            
             
         }
 
@@ -212,6 +225,10 @@ namespace OOP7
             if (slime)
             {
                 mainpen = Pens.Cyan;
+            }
+            else
+            {
+                mainpen = Pens.Black;
             }
         }
 

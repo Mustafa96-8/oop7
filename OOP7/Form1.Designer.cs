@@ -36,7 +36,8 @@
             this.listGroup = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.chBx_slime = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btn_nSlime = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,7 +127,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(653, 170);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(78, 28);
             this.button1.TabIndex = 7;
@@ -138,7 +139,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(653, 202);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(77, 24);
             this.button2.TabIndex = 8;
@@ -146,23 +147,33 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.load_button);
             // 
-            // chBx_slime
+            // button3
             // 
-            this.chBx_slime.AutoSize = true;
-            this.chBx_slime.Location = new System.Drawing.Point(574, 181);
-            this.chBx_slime.Name = "chBx_slime";
-            this.chBx_slime.Size = new System.Drawing.Size(51, 17);
-            this.chBx_slime.TabIndex = 9;
-            this.chBx_slime.Text = "Slime";
-            this.chBx_slime.UseVisualStyleBackColor = true;
-            this.chBx_slime.CheckedChanged += new System.EventHandler(this.chBx_slime_CheckedChanged);
+            this.button3.Location = new System.Drawing.Point(574, 172);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(74, 26);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "ToSlime";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.chBx_slime_chck);
+            // 
+            // btn_nSlime
+            // 
+            this.btn_nSlime.Location = new System.Drawing.Point(575, 202);
+            this.btn_nSlime.Name = "btn_nSlime";
+            this.btn_nSlime.Size = new System.Drawing.Size(73, 23);
+            this.btn_nSlime.TabIndex = 10;
+            this.btn_nSlime.Text = "notSlime";
+            this.btn_nSlime.UseVisualStyleBackColor = true;
+            this.btn_nSlime.Click += new System.EventHandler(this.btn_nSlime_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 519);
-            this.Controls.Add(this.chBx_slime);
+            this.Controls.Add(this.btn_nSlime);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listGroup);
@@ -178,7 +189,6 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -192,7 +202,8 @@
         private System.Windows.Forms.ListBox listGroup;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox chBx_slime;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_nSlime;
     }
 }
 

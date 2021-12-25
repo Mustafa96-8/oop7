@@ -7,12 +7,12 @@ namespace OOP7
 {
     public class Observer
     {
-        /*Mylist glbList;*/
+        Mylist glbList;
 
-        /*public void setMyList(Mylist list)
+        public void setMyList(Mylist list)
         {
             glbList = list;
-        }*/
+        }
 
         public void toSlime(bool value, Mylist mylist)
         {
@@ -30,22 +30,28 @@ namespace OOP7
             }
         }
 
-        public void moveisslime(Base p, int x_, int y_, int width, int height, Mylist mylist)//Lollolo
+        public bool canmoveisslime(Base p, int x_, int y_, int width, int height, Mylist mylist)
         {
-            
+            bool flag = true;
             for (int i = 0; i < mylist.getSize(); i++)
             {
                 Base p2 = mylist.getObj(i);
-                if (p2.getCode() != 'L')
+                if (p2.getCode() == 'L')
+                {
+                    flag = canmoveisslime(p, x_, y_, width, height, (Mylist)p2);
+                    if (!flag) { break; }
+                }
+                else
                 {
                     if (collision(p, p2))
                     {
                         p2.setIsSticked(true);
-                        if (!canMoveNearSlime(p2, x_, y_, width, height, mylist))
+                        if (!canMoveNearSlime(p, p2, x_, y_, width, height, mylist))
                         {
                             p.x -= x_;
                             p.y -= y_;
-                            return;
+                            flag = false;
+                            break;
                         }
                     }
                     else
@@ -54,7 +60,14 @@ namespace OOP7
                     }
                 }
             }
-            
+            return flag;
+        }
+
+        public void moveisslime(Base p, int x_, int y_, int width, int height, Mylist mylist)
+        {
+
+
+            if (!canmoveisslime(p,x_,y_,width,height, mylist)) { return; }
             for (int i = 0; i < mylist.getSize(); i++)
             {
                 Base p2 = mylist.getObj(i);
@@ -68,41 +81,48 @@ namespace OOP7
             }
         }
 
-        public bool canMoveNearSlime(Base p, int x_, int y_, int width, int height, Mylist mylist)
+
+        public bool canMoveNearSlime(Base Slimeobj,Base p1, int x_, int y_, int width, int height, Mylist mylist)
         {
             //p - слайм
             bool flag = true;
+            if (p1.getSlime())
+            {
+                return false;
+            }
+            p1.x += x_;
+            p1.y += y_;
+            if (!((p1.x + p1.sizecollision / 2 < width) && (p1.y + p1.sizecollision < height) && (p1.x - p1.sizecollision / 2 > 0) && (p1.y - p1.sizecollision / 2 > 0)))
+            {
+                p1.x -= x_;
+                p1.y -= y_;
+                return false;
+            }
+            p1.x -= x_;
+            p1.y -= y_;
             for (int i = 0; i < mylist.getSize(); i++)
             {
                 Base p2 = mylist.getObj(i);
                 if (p2.getCode() == 'L')
                 {
-                    flag = canMoveNearSlime(p, x_, y_, width, height, ((Mylist)p2));
+                    flag = canMoveNearSlime(Slimeobj, p1, x_, y_, width, height, ((Mylist)p2));
                     if (!flag) break;
                 }
-                else if (!p2.getSlime())
+                else if (Slimeobj != p1 && Slimeobj!=p2)
                 {
-                    p.x += x_;
-                    p.y += y_;
-                    if (!((p.x + p.sizecollision / 2 < width) && (p.y + p.sizecollision < height) && (p.x - p.sizecollision / 2 > 0) && (p.y - p.sizecollision / 2 > 0)))
-                    {
-                        flag = false;
-                        p.x -= x_;
-                        p.y -= y_;
-                        break;
-                    }
-                    if (!p2.getIsSticked())
-                    {
-                        flag = !p2.collision(p);
-                    }
-                    p.x -= x_;
-                    p.y -= y_;
+                    p1.x += x_;
+                    p1.y += y_;
+
+                    flag = !p1.collision(p2);
+                    p1.x -= x_;
+                    p1.y -= y_;
                     if (!flag) break;
                     
                 }
             }
-            return flag;//Почти сделали попробуй запустить
+            return flag;
         }
+
 
         public bool collision(Base p1, Base p2)// Проверяет на коллизию объект 
         {
