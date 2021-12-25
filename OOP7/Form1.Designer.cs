@@ -47,7 +47,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(741, 584);
             this.pictureBox1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.btnBrush.Enabled = false;
             this.btnBrush.Location = new System.Drawing.Point(765, 15);
-            this.btnBrush.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrush.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrush.Name = "btnBrush";
             this.btnBrush.Size = new System.Drawing.Size(68, 49);
             this.btnBrush.TabIndex = 1;
@@ -81,7 +81,7 @@
             "Red",
             "White"});
             this.listColor.Location = new System.Drawing.Point(765, 71);
-            this.listColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listColor.Margin = new System.Windows.Forms.Padding(4);
             this.listColor.Name = "listColor";
             this.listColor.Size = new System.Drawing.Size(67, 132);
             this.listColor.TabIndex = 2;
@@ -98,7 +98,7 @@
             "Square",
             "Triangle"});
             this.listBox1.Location = new System.Drawing.Point(765, 482);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(112, 116);
             this.listBox1.TabIndex = 3;
@@ -108,7 +108,7 @@
             // btnCreateGroup
             // 
             this.btnCreateGroup.Location = new System.Drawing.Point(871, 15);
-            this.btnCreateGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateGroup.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateGroup.Name = "btnCreateGroup";
             this.btnCreateGroup.Size = new System.Drawing.Size(104, 49);
             this.btnCreateGroup.TabIndex = 4;
@@ -125,7 +125,7 @@
             this.listGroup.Items.AddRange(new object[] {
             "No one"});
             this.listGroup.Location = new System.Drawing.Point(871, 71);
-            this.listGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listGroup.Margin = new System.Windows.Forms.Padding(4);
             this.listGroup.Name = "listGroup";
             this.listGroup.Size = new System.Drawing.Size(103, 132);
             this.listGroup.TabIndex = 5;
@@ -160,7 +160,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(765, 209);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 34);
             this.button3.TabIndex = 9;
@@ -171,7 +171,7 @@
             // btn_nSlime
             // 
             this.btn_nSlime.Location = new System.Drawing.Point(765, 249);
-            this.btn_nSlime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_nSlime.Margin = new System.Windows.Forms.Padding(4);
             this.btn_nSlime.Name = "btn_nSlime";
             this.btn_nSlime.Size = new System.Drawing.Size(99, 30);
             this.btn_nSlime.TabIndex = 10;
@@ -185,7 +185,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(210, 189);
             this.treeView1.TabIndex = 11;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseDown);
             // 
             // Form1
             // 
@@ -204,7 +204,7 @@
             this.Controls.Add(this.btnBrush);
             this.Controls.Add(this.pictureBox1);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);

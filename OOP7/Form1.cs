@@ -278,10 +278,19 @@ namespace OOP7
                 if (lists.getObj(i).getCode() == 'L')
                     Node(root, (Mylist)lists.getObj(i));
                 treeView1.Nodes.Add(root);
-                //treeView1.SelectedNode = ;
                 treeView1.ExpandAll();
             }
-
+            selectNode();
+        }
+        private void selectNode()
+        {
+            for(int i = 0; i < lists.getSize(); i++)
+            {
+                if (lists.getObj(i).getSelect()) {
+                    treeView1.SelectedNode = treeView1.Nodes[i];
+                    treeView1.Focus();
+                }
+            }
         }
         private void Node(TreeNode root, Mylist mylist)
         {
@@ -293,12 +302,19 @@ namespace OOP7
                 root.Nodes.Add(child);
             }
         }
-
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             int index = treeView1.SelectedNode.Index;
             lists.refreshSelected(lists);
             lists.getObj(index).toSelect(false, lists);
+            PaintAll();
+        }
+
+        private void treeView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TreeNode node = treeView1.GetNodeAt(e.X, e.Y);
+            lists.refreshSelected(lists);
+            lists.getObj(node.Index).toSelect(false, lists);
             PaintAll();
         }
     }
