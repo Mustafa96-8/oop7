@@ -9,6 +9,13 @@ namespace OOP7
     {
         Mylist glbList;
 
+        public EventHandler observ;
+
+        public void Update()
+        {
+            observ.Invoke(this, null);
+        }
+
         public void setMyList(Mylist list)
         {
             glbList = list;

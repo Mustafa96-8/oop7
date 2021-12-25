@@ -126,5 +126,10 @@ namespace OOP7
             a = Int32.Parse(tmp[4]);
             h = Int32.Parse(tmp[5]);
         }
+        public override string info()
+        {
+            string tmp = ("Triagle", x, y, color, a, h).ToString();
+            return tmp;
+        }
     }
 }

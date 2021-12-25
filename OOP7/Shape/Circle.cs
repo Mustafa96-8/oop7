@@ -102,5 +102,11 @@ namespace OOP7
             setBrush(tmp[3]);
             R = Int32.Parse(tmp[4]);
         }
+
+        public override string info()
+        {
+            string tmp = ("Circle", x, y, color, R).ToString();
+            return tmp;
+        }
     }
 }

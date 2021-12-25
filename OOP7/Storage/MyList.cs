@@ -487,7 +487,10 @@ namespace OOP7
             streamReader.Close();
         }
 
-
-        
+        public override string info()
+        {
+            string tmp = ("List", getId(), getSize()).ToString();
+            return tmp;
+        }
     }
 }

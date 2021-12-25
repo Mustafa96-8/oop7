@@ -107,5 +107,10 @@ namespace OOP7
             a = Int32.Parse(tmp[4]);
             b = Int32.Parse(tmp[5]);
         }
+        public override string info()
+        {
+            string tmp = ("Rectangle", x, y, color, a, b).ToString();
+            return tmp;
+        }
     }
 }

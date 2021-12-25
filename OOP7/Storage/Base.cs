@@ -240,7 +240,10 @@ namespace OOP7
         {
 
         }
-        
+        public virtual string info()
+        {
+            return string.Empty;
+        }
     }
     class MyBaseFactory
 	{

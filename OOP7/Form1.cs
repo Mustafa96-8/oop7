@@ -8,6 +8,7 @@ namespace OOP7
     {
         Mylist lists;
         PaintBox paintBox;
+        Observer observer;
         bool isCTRL;
         int id = 0;
         string path = "savedata.txt";
@@ -16,7 +17,10 @@ namespace OOP7
             InitializeComponent();
             paintBox = new PaintBox(pictureBox1.Width, pictureBox1.Height);
             lists = new Mylist();
+            observer = new Observer();
             isCTRL = false;
+            observer.observ += new EventHandler(UpdateTree);
+            observer.Update();
             PaintAll();
         }
 
@@ -67,6 +71,7 @@ namespace OOP7
         {
             paintBox.Draw(lists);
             pictureBox1.Image = paintBox.GetBitmap();
+            observer.Update();
         }
 
         private void btnChangeColor(object sender, EventArgs e)
@@ -262,6 +267,39 @@ namespace OOP7
         {
             Observer observer = new Observer();
             observer.toSlime(false, lists);
+        }
+
+        private void UpdateTree(object sender, EventArgs e)
+        {
+            treeView1.Nodes.Clear();
+            for (int i = 0; i < lists.getSize(); i++)
+            {
+                TreeNode root = new TreeNode { Text = lists.getObj(i).info() };
+                if (lists.getObj(i).getCode() == 'L')
+                    Node(root, (Mylist)lists.getObj(i));
+                treeView1.Nodes.Add(root);
+                //treeView1.SelectedNode = ;
+                treeView1.ExpandAll();
+            }
+
+        }
+        private void Node(TreeNode root, Mylist mylist)
+        {
+            for (int i = 0; i < mylist.getSize(); i++)
+            {
+                TreeNode child = new TreeNode { Text = mylist.getObj(i).info() };
+                if (mylist.getObj(i).getCode() == 'L')
+                    Node(root, (Mylist)mylist.getObj(i));
+                root.Nodes.Add(child);
+            }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            int index = treeView1.SelectedNode.Index;
+            lists.refreshSelected(lists);
+            lists.getObj(index).toSelect(false, lists);
+            PaintAll();
         }
     }
 }
