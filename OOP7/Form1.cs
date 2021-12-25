@@ -275,41 +275,39 @@ namespace OOP7
             for (int i = 0; i < lists.getSize(); i++)
             {
                 TreeNode root = new TreeNode { Text = lists.getObj(i).info() };
+                treeView1.Nodes.Add(root);
                 if (lists.getObj(i).getCode() == 'L')
                     Node(root, (Mylist)lists.getObj(i));
-                treeView1.Nodes.Add(root);
                 treeView1.ExpandAll();
             }
             selectNode();
         }
-        private void selectNode()
-        {
-            for(int i = 0; i < lists.getSize(); i++)
-            {
-                if (lists.getObj(i).getSelect()) {
-                    treeView1.SelectedNode = treeView1.Nodes[i];
-                    treeView1.Focus();
-                }
-            }
-        }
+        
         private void Node(TreeNode root, Mylist mylist)
         {
             for (int i = 0; i < mylist.getSize(); i++)
             {
                 TreeNode child = new TreeNode { Text = mylist.getObj(i).info() };
-                if (mylist.getObj(i).getCode() == 'L')
-                    Node(root, (Mylist)mylist.getObj(i));
                 root.Nodes.Add(child);
+                if (mylist.getObj(i).getCode() == 'L')
+                    Node(child, (Mylist)mylist.getObj(i));
+                
             }
         }
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+
+        private void selectNode()
         {
-            int index = treeView1.SelectedNode.Index;
-            lists.refreshSelected(lists);
-            lists.getObj(index).toSelect(false, lists);
-            PaintAll();
+            for (int i = 0; i < lists.getSize(); i++)
+            {
+                if (lists.getObj(i).getSelect())
+                {   
+                    treeView1.SelectedNode = treeView1.Nodes[i];
+                    treeView1.Focus();
+                }
+            }
         }
 
+        
         private void treeView1_MouseDown(object sender, MouseEventArgs e)
         {
             TreeNode node = treeView1.GetNodeAt(e.X, e.Y);
